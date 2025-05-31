@@ -1,50 +1,49 @@
 :root {
-    --beige: #f5f1e8;
-  }
+  --beige: #f5f1e8;
+}
 
-  .how-section{
-    background-color: var(--beige);
-  }
-  .how-title {
-    font-family: "Lora";
-    text-align: center;
-    font-size: 80px;
-    text-transform: capitalize;
-  }
-  .how-container {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    padding:60px 0 60px 0;
-  }
-  .how-step {
-    padding: 5px 10px 5px 10px;
-    width: 300px;
-  }
-  .how-step img{
-    width: 70px;
-  }
-  .how-number {
-    font-family: "Lora";
-    font-size: 30px;
-    padding: 20px 0 20px 0;
-  }
-  .how-text{
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 30px;
-  }
+.how-section {
+  background-color: var(--beige);
+}
+.how-title {
+  font-family: "Lora";
+  text-align: center;
+  font-size: 80px;
+  text-transform: capitalize;
+}
+.how-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 60px 0 60px 0;
+}
+.how-step {
+  padding: 5px 10px 5px 10px;
+  width: 300px;
+}
+.how-step img {
+  width: 70px;
+}
+.how-number {
+  font-family: "Lora";
+  font-size: 30px;
+  padding: 20px 0 20px 0;
+}
+.how-text {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 30px;
+}
 
-  /* TABLET */
+/* TABLET */
 @media only screen and (max-width: 1000px) {
-  
 }
 /* MOBILE */
 @media only screen and (max-width: 500px) {
-  .how-title{
+  .how-title {
     font-size: 30px;
-  } 
-  .how-text{
+  }
+  .how-text {
     font-size: 20px;
   }
 }

@@ -150,7 +150,8 @@
   .end-mid-container {
     flex-direction: column;
   }
-  .end-mid-container-left, .end-mid-container-right {
+  .end-mid-container-left,
+  .end-mid-container-right {
     padding: 0 50px 0 0;
   }
 }
@@ -177,13 +178,13 @@
     /* This targets the 3rd direct child image */
     width: 20px; /* Or whatever different width you want */
   }
-  .mid-proof-title{
+  .mid-proof-title {
     font-size: 15px;
   }
-.mid-proof-container{
+  .mid-proof-container {
     flex-direction: column;
     padding: 0 0 0 20px;
-}
+  }
   .mid-proof-right {
     padding: 0 0px 0 10px;
     width: 100%;
@@ -193,7 +194,7 @@
     padding: 0 20px 0 30px;
     width: 100%;
   }
-  .mid-proof-container{
+  .mid-proof-container {
     padding: auto;
   }
   .proof-feature-title {
@@ -207,12 +208,11 @@
     flex-direction: column;
     max-width: 400px;
   }
-  .proof-end-title{
+  .proof-end-title {
     font-size: 30px;
     width: 200px;
   }
-  .proof-end-text{
+  .proof-end-text {
     font-size: 20px;
   }
-  
 }

@@ -1,54 +1,52 @@
 .hero-image-background {
-    background: linear-gradient( rgba(90, 90, 90, 0.8), rgba(255, 255, 255, 0.5) ),url("../../images/marble-coin4.jpeg");
-    background-color: #fff;
-    height: 100vh;
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
-  }
-  .hero-section{
-    display: flex;
-    width: 100%;
-  }
-  .hero-left {
-    margin: 200px 80px 80px 150px;
-    width: 40vw;
-  }
-  .hero-right img{
-    padding: 70px 0 0 0;
-      width: 500px;
-  }
-  .hero-right {
-    width:40vw;
-  }
-
-.hero_title{
-font-family: "Playfair";
-font-size: 50px;
-color: white;
-
+  background: linear-gradient(rgba(90, 90, 90, 0.8), rgba(255, 255, 255, 0.5)), url("../../images/marble-coin4.jpeg");
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
-.hero_text{
-font-family: "Montserrat";
-font-size: 18px;
-color:white;
-font-weight: 400;
-padding:30px 0 50px 0;
-width:80%;
+.hero-section {
+  display: flex;
+  width: 100%;
+}
+.hero-left {
+  margin: 200px 80px 80px 150px;
+  width: 40vw;
+}
+.hero-right img {
+  padding: 70px 0 0 0;
+  width: 500px;
+}
+.hero-right {
+  width: 40vw;
+}
+
+.hero_title {
+  font-family: "Playfair";
+  font-size: 50px;
+  color: white;
+}
+.hero_text {
+  font-family: "Montserrat";
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  padding: 30px 0 50px 0;
+  width: 80%;
 }
 .hero_button {
-    background-color: #8f780efd;
-    /* background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+  background-color: #8f780efd;
+  /* background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
     radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
-    font-family: "Poppins";
-    font-size: 18px;
-    padding:10px 20px 10px 20px;
-    color:white;
-    border-radius: 25px;
-    font-weight: 200;
+  font-family: "Poppins";
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+  color: white;
+  border-radius: 25px;
+  font-weight: 200;
 }
 .hero_button:hover {
   /* font-weight: 600; */
@@ -67,7 +65,6 @@ width:80%;
   /* transition: 3s; */
 }
 
-
 /* TABLET */
 @media only screen and (max-width: 1000px) {
   .hero-left {
@@ -76,19 +73,18 @@ width:80%;
   }
   .hero-right {
     padding: 300px 0 0 0px;
-      width:40vw;
+    width: 40vw;
   }
-  .hero-right img{
-    width:300px ;
+  .hero-right img {
+    width: 300px;
   }
 }
-  
+
 /* MOBILE */
 @media only screen and (max-width: 500px) {
-  .hero-section{
+  .hero-section {
     width: 100vw;
     height: 40px;
-    
   }
   .hero-left {
     /* margin: 100px 40px 40px 10px; */
@@ -97,36 +93,35 @@ width:80%;
     align-items: center;
     padding: 0 0 200px 50px;
   }
-  .hero_title{
+  .hero_title {
     padding: 150px 0 0 0px;
     font-size: 20px;
   }
-  .hero_button{
+  .hero_button {
     font-size: 10px;
   }
   .hero-right {
     padding: 150px 0 0 0;
-      width:50%;
+    width: 50%;
   }
-  
-  .hero-image-background{
+
+  .hero-image-background {
     padding-bottom: 5rem;
     width: 100%;
   }
-  .hero-right img{
+  .hero-right img {
     padding: 0;
-    margin: 0 0 0px 0px;  
+    margin: 0 0 0px 0px;
     height: 200px;
     width: 150px;
-    
   }
-  .hero_text{
+  .hero_text {
     font-size: 14px;
     padding: 20px 0 50px 0px;
   }
-  .hero_button{
+  .hero_button {
     font-size: 10px;
-    
+
     width: 100px;
   }
 }

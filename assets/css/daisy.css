@@ -2,126 +2,126 @@
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-    name: "MCX";
-    default: true;
-    prefersdark: true;
-    color-scheme: "dark";
-    
-    /* Light Mode - Roman Luxury */
-    --color-base-100: oklch(96.08% 0.001 106.89); /* Roman Marble White #F5F5F5 */
-    --color-base-200: oklch(93.39% 0.002 106.89); /* Lighter marble */
-    --color-base-300: oklch(87.84% 0.003 106.89); /* Soft marble shadow */
-    --color-base-content: oklch(13.18% 0.006 285.82); /* Deep Onyx Black #121212 */
-    
-    --color-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold #C4A100 */
-    --color-primary-content: oklch(96.08% 0.001 106.89); /* Marble white on gold */
-    
-    --color-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray #5A5A5A */
-    --color-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
-    
-    --color-accent: oklch(28.63% 0.168 29.23); /* Crimson Velvet #8B0000 */
-    --color-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
-    
-    --color-neutral: oklch(13.18% 0.006 285.82); /* Deep Onyx */
-    --color-neutral-content: oklch(96.08% 0.001 106.89); /* Marble white */
-    
-    --color-info: oklch(66.93% 0.113 85.87); /* Imperial Gold for info */
-    --color-info-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-    
-    --color-success: oklch(66.93% 0.113 85.87); /* Gold for success */
-    --color-success-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-    
-    --color-warning: oklch(66.93% 0.113 85.87); /* Imperial Gold */
-    --color-warning-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-    
-    --color-error: oklch(28.63% 0.168 29.23); /* Crimson Velvet */
-    --color-error-content: oklch(96.08% 0.001 106.89); /* White text */
-    
-    /* Dark Mode - Elite Roman */
-    --color-dark-base-100: oklch(13.18% 0.006 285.82); /* Deep Onyx Black */
-    --color-dark-base-200: oklch(18.04% 0.008 285.82); /* Darker onyx */
-    --color-dark-base-300: oklch(25.88% 0.012 285.82); /* Gunmetal transition */
-    --color-dark-base-content: oklch(96.08% 0.001 106.89); /* Roman Marble White */
-    
-    --color-dark-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold (unchanged) */
-    --color-dark-primary-content: oklch(13.18% 0.006 285.82); /* Deep Onyx on gold */
-    
-    --color-dark-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray */
-    --color-dark-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
-    
-    --color-dark-accent: oklch(35.29% 0.168 29.23); /* Brighter Crimson for dark mode */
-    --color-dark-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
-    
-    --color-dark-neutral: oklch(96.08% 0.001 106.89); /* Inverted - marble */
-    --color-dark-neutral-content: oklch(13.18% 0.006 285.82); /* Deep Onyx */
-    
-    /* Roman Luxury UI Refinements */
-    --radius-selector: 0.75rem; /* Softer for luxury feel */
-    --radius-field: 0.5rem; /* Elegant form inputs */
-    --radius-box: 1rem; /* Premium card radius */
-    --radius-btn: 0.5rem; /* Sophisticated buttons */
-    
-    --size-selector: 0.25rem; /* Refined selection indicators */
-    --size-field: 0.5rem; /* Elegant field sizing */
-    
-    --border-width: 1px; /* Subtle, refined borders */
-    --border-style: solid;
-    
-    /* Roman Premium Effects */
-    --shadow-elevation-1: 0 1px 3px oklch(13.18% 0.006 285.82 / 0.12), 0 1px 2px oklch(13.18% 0.006 285.82 / 0.24);
-    --shadow-elevation-2: 0 4px 6px oklch(13.18% 0.006 285.82 / 0.07), 0 2px 4px oklch(13.18% 0.006 285.82 / 0.06);
-    --shadow-elevation-3: 0 10px 15px oklch(13.18% 0.006 285.82 / 0.1), 0 4px 6px oklch(13.18% 0.006 285.82 / 0.05);
-    
-    /* Gold accent glow for premium interactions */
-    --glow-primary: 0 0 20px oklch(66.93% 0.113 85.87 / 0.3);
-    --glow-accent: 0 0 20px oklch(28.63% 0.168 29.23 / 0.3);
+  name: "MCX";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* Light Mode - Roman Luxury */
+  --color-base-100: oklch(96.08% 0.001 106.89); /* Roman Marble White #F5F5F5 */
+  --color-base-200: oklch(93.39% 0.002 106.89); /* Lighter marble */
+  --color-base-300: oklch(87.84% 0.003 106.89); /* Soft marble shadow */
+  --color-base-content: oklch(13.18% 0.006 285.82); /* Deep Onyx Black #121212 */
+
+  --color-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold #C4A100 */
+  --color-primary-content: oklch(96.08% 0.001 106.89); /* Marble white on gold */
+
+  --color-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray #5A5A5A */
+  --color-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
+
+  --color-accent: oklch(28.63% 0.168 29.23); /* Crimson Velvet #8B0000 */
+  --color-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
+
+  --color-neutral: oklch(13.18% 0.006 285.82); /* Deep Onyx */
+  --color-neutral-content: oklch(96.08% 0.001 106.89); /* Marble white */
+
+  --color-info: oklch(66.93% 0.113 85.87); /* Imperial Gold for info */
+  --color-info-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
+
+  --color-success: oklch(66.93% 0.113 85.87); /* Gold for success */
+  --color-success-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
+
+  --color-warning: oklch(66.93% 0.113 85.87); /* Imperial Gold */
+  --color-warning-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
+
+  --color-error: oklch(28.63% 0.168 29.23); /* Crimson Velvet */
+  --color-error-content: oklch(96.08% 0.001 106.89); /* White text */
+
+  /* Dark Mode - Elite Roman */
+  --color-dark-base-100: oklch(13.18% 0.006 285.82); /* Deep Onyx Black */
+  --color-dark-base-200: oklch(18.04% 0.008 285.82); /* Darker onyx */
+  --color-dark-base-300: oklch(25.88% 0.012 285.82); /* Gunmetal transition */
+  --color-dark-base-content: oklch(96.08% 0.001 106.89); /* Roman Marble White */
+
+  --color-dark-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold (unchanged) */
+  --color-dark-primary-content: oklch(13.18% 0.006 285.82); /* Deep Onyx on gold */
+
+  --color-dark-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray */
+  --color-dark-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
+
+  --color-dark-accent: oklch(35.29% 0.168 29.23); /* Brighter Crimson for dark mode */
+  --color-dark-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
+
+  --color-dark-neutral: oklch(96.08% 0.001 106.89); /* Inverted - marble */
+  --color-dark-neutral-content: oklch(13.18% 0.006 285.82); /* Deep Onyx */
+
+  /* Roman Luxury UI Refinements */
+  --radius-selector: 0.75rem; /* Softer for luxury feel */
+  --radius-field: 0.5rem; /* Elegant form inputs */
+  --radius-box: 1rem; /* Premium card radius */
+  --radius-btn: 0.5rem; /* Sophisticated buttons */
+
+  --size-selector: 0.25rem; /* Refined selection indicators */
+  --size-field: 0.5rem; /* Elegant field sizing */
+
+  --border-width: 1px; /* Subtle, refined borders */
+  --border-style: solid;
+
+  /* Roman Premium Effects */
+  --shadow-elevation-1: 0 1px 3px oklch(13.18% 0.006 285.82 / 0.12), 0 1px 2px oklch(13.18% 0.006 285.82 / 0.24);
+  --shadow-elevation-2: 0 4px 6px oklch(13.18% 0.006 285.82 / 0.07), 0 2px 4px oklch(13.18% 0.006 285.82 / 0.06);
+  --shadow-elevation-3: 0 10px 15px oklch(13.18% 0.006 285.82 / 0.1), 0 4px 6px oklch(13.18% 0.006 285.82 / 0.05);
+
+  /* Gold accent glow for premium interactions */
+  --glow-primary: 0 0 20px oklch(66.93% 0.113 85.87 / 0.3);
+  --glow-accent: 0 0 20px oklch(28.63% 0.168 29.23 / 0.3);
 }
 
 /* Custom Roman luxury utilities */
 .mcx-gold-glow {
-    box-shadow: var(--glow-primary);
-    transition: box-shadow 0.3s ease;
+  box-shadow: var(--glow-primary);
+  transition: box-shadow 0.3s ease;
 }
 
 .mcx-crimson-glow {
-    box-shadow: var(--glow-accent);
-    transition: box-shadow 0.3s ease;
+  box-shadow: var(--glow-accent);
+  transition: box-shadow 0.3s ease;
 }
 
 .mcx-marble-texture {
-    background: linear-gradient(135deg, 
-        oklch(96.08% 0.001 106.89) 0%, 
-        oklch(93.39% 0.002 106.89) 50%, 
-        oklch(96.08% 0.001 106.89) 100%);
+  background: linear-gradient(
+    135deg,
+    oklch(96.08% 0.001 106.89) 0%,
+    oklch(93.39% 0.002 106.89) 50%,
+    oklch(96.08% 0.001 106.89) 100%
+  );
 }
 
 .mcx-premium-gradient {
-    background: linear-gradient(135deg, 
-        oklch(66.93% 0.113 85.87) 0%, 
-        oklch(28.63% 0.168 29.23) 100%);
+  background: linear-gradient(135deg, oklch(66.93% 0.113 85.87) 0%, oklch(28.63% 0.168 29.23) 100%);
 }
 
 /* Roman-inspired hover states */
 .btn-primary:hover {
-    box-shadow: var(--glow-primary);
-    transform: translateY(-1px);
+  box-shadow: var(--glow-primary);
+  transform: translateY(-1px);
 }
 
 .btn-accent:hover {
-    box-shadow: var(--glow-accent);
-    transform: translateY(-1px);
+  box-shadow: var(--glow-accent);
+  transform: translateY(-1px);
 }
 
 /* Elite card styling */
 .card-premium {
-    background: var(--color-base-100);
-    border: 1px solid oklch(66.93% 0.113 85.87 / 0.2);
-    box-shadow: var(--shadow-elevation-2);
-    transition: all 0.3s ease;
+  background: var(--color-base-100);
+  border: 1px solid oklch(66.93% 0.113 85.87 / 0.2);
+  box-shadow: var(--shadow-elevation-2);
+  transition: all 0.3s ease;
 }
 
 .card-premium:hover {
-    border-color: oklch(66.93% 0.113 85.87 / 0.4);
-    box-shadow: var(--shadow-elevation-3), var(--glow-primary);
-    transform: translateY(-2px);
+  border-color: oklch(66.93% 0.113 85.87 / 0.4);
+  box-shadow: var(--shadow-elevation-3), var(--glow-primary);
+  transform: translateY(-2px);
 }

@@ -1,10 +1,25 @@
 @import "./daisy.css";
 :root {
-    --gold: #c4a100;
-    --onyx: #121212;
-    --marble: #f5f5f5;
-    --crimson: #8b0000;
-    --gunmetal: #5a5a5a;
-    --golden:  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-  }
+  --gold: #c4a100;
+  --onyx: #121212;
+  --marble: #f5f5f5;
+  --crimson: #8b0000;
+  --gunmetal: #5a5a5a;
+  --golden:
+    background: radial-gradient(
+        ellipse farthest-corner at right bottom,
+        #fedb37 0%,
+        #fdb931 8%,
+        #9f7928 30%,
+        #8a6e2f 40%,
+        transparent 80%
+      ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ffffff 0%,
+      #ffffac 8%,
+      #d1b464 25%,
+      #5d4a1f 62.5%,
+      #5d4a1f 100%
+    );
+}
