@@ -1,0 +1,218 @@
+.proof-section {
+  background-color: #121212;
+  color: #dfca6a;
+  width: 100%;
+}
+.top-section .trusted {
+  font-family: "Lora";
+  font-size: 40px;
+  width: 600px;
+  margin: auto;
+  padding: 50px 0 0 0;
+}
+.top-section .subtitle {
+  color: white;
+  text-align: center;
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 20px;
+  padding: 20px 0 20px 0;
+}
+.brand-section {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.brand {
+  height: 200px;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+.mid-proof-section {
+  padding: 50px 0px 50px 0px;
+  background-color: #191818;
+  width: 100%;
+}
+.mid-proof-container {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mid-proof-right {
+  padding: 0 50px 0 10px;
+  width: 30%;
+}
+
+.mid-proof-left {
+  padding: 0 50px 0;
+  width: 40%;
+}
+.proof-picture {
+  height: 300px;
+  /* border-radius: 10px; */
+}
+.mid-proof-title {
+  font-family: "Playfair";
+  text-transform: uppercase;
+  margin: 5px 0px 5px 0px;
+  color: #dfca6a;
+  font-size: 25px;
+}
+.proof-quote {
+  font-family: "Lora";
+  font-size: 25px;
+  padding: 10px 5px 10px 5px;
+  margin: 0 40px 0 0;
+}
+.proof-name {
+  font-family: "Montserrat";
+  font-weight: 400;
+  padding: 20px 0 20px 0;
+  font-size: 20px;
+}
+
+.mid-features-container {
+  color: white;
+  text-align: center;
+  background-color: #121212;
+  padding: 20px 0 20px 0;
+}
+.mid-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px 5px 40px;
+  /* width: 1200px; */
+}
+.proof-feature-title {
+  font-family: "Montserrat";
+  font-size: 40px;
+}
+.proof-feature-text {
+  font-size: 25px;
+  font-weight: 200;
+}
+
+.end-mid-container {
+  color: #121111;
+  padding: 20px 40px 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.proof-end-title {
+  font-family: "Lora";
+  color: #e6d277;
+  font-size: 50px;
+  width: 800px;
+  font-weight: 300;
+}
+.proof-end-text {
+  font-family: "Montserrat";
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+  padding: 20px 0 20px 0;
+}
+.end-picture {
+  height: 300px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .brand {
+    width: 150px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+  }
+  .brand-section > img:nth-child(-n + 3 of .brand) {
+    width: 100px;
+  }
+
+  .mid-proof-right {
+    padding: 0 70px 0 10px;
+    width: 40%;
+  }
+
+  .mid-proof-left {
+    padding: 0 70px 0 80px;
+    width: 50%;
+  }
+  .proof-feature-title {
+    font-size: 16px;
+  }
+  .proof-feature-text {
+    font-size: 12px;
+    font-weight: 200;
+  }
+  .end-mid-container {
+    flex-direction: column;
+  }
+  .end-mid-container-left, .end-mid-container-right {
+    padding: 0 50px 0 0;
+  }
+}
+/* MOBILE */
+@media only screen and (max-width: 500px) {
+  .top-section .trusted {
+    width: 350px;
+    font-size: 20px;
+  }
+  .brand {
+    height: 60px;
+    /* You're missing a unit here. It should be 'px' or another valid unit. */
+    width: 40px; /* Assuming you want 50 pixels */
+    align-items: center;
+    align-content: center;
+    align-self: center;
+  }
+  .brand-section:first-child {
+    width: 30px;
+    height: 60px;
+  }
+
+  .brand-section > img:nth-child(3) {
+    /* This targets the 3rd direct child image */
+    width: 20px; /* Or whatever different width you want */
+  }
+  .mid-proof-title{
+    font-size: 15px;
+  }
+.mid-proof-container{
+    flex-direction: column;
+    padding: 0 0 0 20px;
+}
+  .mid-proof-right {
+    padding: 0 0px 0 10px;
+    width: 100%;
+  }
+
+  .mid-proof-left {
+    padding: 0 20px 0 30px;
+    width: 100%;
+  }
+  .mid-proof-container{
+    padding: auto;
+  }
+  .proof-feature-title {
+    font-size: 12px;
+  }
+  .proof-feature-text {
+    font-size: 10px;
+    font-weight: 200;
+  }
+  .end-mid-container {
+    flex-direction: column;
+    max-width: 400px;
+  }
+  .proof-end-title{
+    font-size: 30px;
+    width: 200px;
+  }
+  .proof-end-text{
+    font-size: 20px;
+  }
+  
+}

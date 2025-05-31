@@ -1,0 +1,65 @@
+.social-section{
+    background-color: #121212;
+    color: #dfca6a;
+    /* height: 800px; */
+    padding: 50px 0 50px 0;
+    
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    height: 100px;
+}
+.social-title {
+    font-family: "Lora";
+    font-size: 52px;
+    width: 400px;
+    text-align: center;
+    margin: 20px auto 20px auto;
+    text-transform: uppercase;
+}
+.social-intro {
+    font-family: "Poppins";
+    text-transform:uppercase;
+    font-size: 20px;
+    text-align: center; 
+    padding: 30px;
+}
+.social-brand {
+    font-family: "Lora";
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center; 
+    padding: 20px;
+}
+.social-text {
+    font-family: "Lora";
+    font-size: 20px;
+    text-align: center;
+    /* display: inline; */
+    justify-content: left;
+    width: 400px;
+    margin: auto;
+}
+.social-name{
+    font-family: "Montserrat";
+    font-size: 20px;
+    font-weight: 400;
+    margin: auto;
+    text-align: center;
+    padding: 20px 0 20px 100px;
+    /* justify-content: center; */
+}
+.social-features{
+    padding: 10px;
+}
+.social-feature {
+    list-style-type: upper-roman;
+    text-align: center;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
