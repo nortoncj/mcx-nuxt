@@ -1,17 +1,19 @@
 <template>
-  <div class="hero bg-base-300  min-h-screen">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-5xl font-bold">
-          Title
-        </h1>
-        <p class="py-6">
-          text explaining what this does
-        </p>
-        <button class="btn btn-accent text-test-config">
-          <Icon name="ri:google-fill" size="24" /> Sign In
-        </button>
-      </div>
+  <AuthLayout>
+    <div class="mt-10">
+      <h1 class="lg:text-5xl text-3xl text-center font-extrabold">
+        Login to your Account
+      </h1>
+      <AuthForm />
+    
     </div>
-  </div>
+  </AuthLayout>
 </template>
+
+<script setup>
+import AuthLayout from "~/layouts/AuthLayout.vue";
+let name = ref(null);
+let email = ref(null);
+let password = ref(null);
+let errors = ref(null);
+</script>

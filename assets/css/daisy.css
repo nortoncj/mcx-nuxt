@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
 
 
 /* MCX Light Theme */
@@ -198,3 +198,4 @@
     box-shadow: 0 10px 15px #12121230, 0 0 20px #C4A10030;
     transform: translateY(-2px);
 }
+@plugin "daisyui";
