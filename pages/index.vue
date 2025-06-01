@@ -8,7 +8,7 @@
         <p class="py-6">
           text explaining what this does
         </p>
-        <button class="btn btn-accent ">
+        <button class="btn btn-accent text-test-config">
           <Icon name="ri:google-fill" size="24" /> Sign In
         </button>
       </div>

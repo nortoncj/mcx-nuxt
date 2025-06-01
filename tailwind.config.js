@@ -9,30 +9,65 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+        colors: {
+            'test-config': '#ff0000',
+          }
+    },
   },
   plugins: [
     require("daisyui"),
   ],
   daisyui: {
     themes: [
-      {
-        MCX: {
-          "primary": "oklch(60% 0.245 78.834)",
-          "secondary": "oklch(20% 0.109 3.907)",
-          "accent": "oklch(35% 0.188 13.697)",
-          "neutral": "oklch(14% 0.005 285.823)",
-          "base-100": "oklch(98% 0 0)",
-          "base-200": "oklch(95% 0 0)",
-          "base-300": "oklch(92% 0 0)",
-          "info": "oklch(40% 0.17 325.612)",
-          "success": "oklch(76% 0.177 163.223)",
-          "warning": "oklch(60% 0.245 78.834)",
-          "error": "oklch(45% 0.188 13.697)",
+        {
+          "MCX": {
+            "primary": "#C4A100",           // Imperial Gold
+            "primary-content": "#F5F5F5",   // Marble White
+            "secondary": "#5A5A5A",         // Gunmetal Gray  
+            "secondary-content": "#F5F5F5", // Marble White
+            "accent": "#8B0000",            // Crimson Velvet
+            "accent-content": "#F5F5F5",    // Marble White
+            "neutral": "#121212",           // Deep Onyx
+            "neutral-content": "#F5F5F5",   // Marble White
+            "base-100": "#F5F5F5",          // Roman Marble White
+            "base-200": "#EEEEEE",          // Lighter marble
+            "base-300": "#DDDDDD",          // Soft marble shadow
+            "base-content": "#121212",      // Deep Onyx Black
+            "info": "#C4A100",              // Imperial Gold
+            "info-content": "#121212",      // Deep Onyx
+            "success": "#C4A100",           // Gold for success
+            "success-content": "#121212",   // Deep Onyx
+            "warning": "#C4A100",           // Imperial Gold
+            "warning-content": "#121212",   // Deep Onyx
+            "error": "#8B0000",             // Crimson Velvet
+            "error-content": "#F5F5F5",     // Marble White
+          },
+          "MCX-Dark": {
+            "primary": "#D4B100",           // Brighter Imperial Gold
+            "primary-content": "#121212",   // Deep Onyx
+            "secondary": "#6A6A6A",         // Lighter Gunmetal
+            "secondary-content": "#F5F5F5", // Marble White
+            "accent": "#A00000",            // Brighter Crimson
+            "accent-content": "#F5F5F5",    // Marble White
+            "neutral": "#2A2A2A",           // Lighter neutral
+            "neutral-content": "#F5F5F5",   // Marble White
+            "base-100": "#121212",          // Deep Onyx Black
+            "base-200": "#1A1A1A",          // Darker onyx
+            "base-300": "#2A2A2A",          // Gunmetal transition
+            "base-content": "#F5F5F5",      // Roman Marble White
+            "info": "#D4B100",              // Bright Imperial Gold
+            "info-content": "#121212",      // Deep Onyx
+            "success": "#D4B100",           // Bright Gold
+            "success-content": "#121212",   // Deep Onyx
+            "warning": "#D4B100",           // Bright Imperial Gold
+            "warning-content": "#121212",   // Deep Onyx
+            "error": "#A00000",             // Bright Crimson
+            "error-content": "#F5F5F5",     // Marble White
+          }
         },
-      },
-      "light",
-      "dark",
-    ],
+        "light",
+        "dark"
+      ],
   },
 };

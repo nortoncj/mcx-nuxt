@@ -1,127 +1,200 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-@plugin "daisyui/theme" {
-  name: "MCX";
-  default: true;
-  prefersdark: true;
-  color-scheme: "dark";
 
-  /* Light Mode - Roman Luxury */
-  --color-base-100: oklch(96.08% 0.001 106.89); /* Roman Marble White #F5F5F5 */
-  --color-base-200: oklch(93.39% 0.002 106.89); /* Lighter marble */
-  --color-base-300: oklch(87.84% 0.003 106.89); /* Soft marble shadow */
-  --color-base-content: oklch(13.18% 0.006 285.82); /* Deep Onyx Black #121212 */
-
-  --color-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold #C4A100 */
-  --color-primary-content: oklch(96.08% 0.001 106.89); /* Marble white on gold */
-
-  --color-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray #5A5A5A */
-  --color-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
-
-  --color-accent: oklch(28.63% 0.168 29.23); /* Crimson Velvet #8B0000 */
-  --color-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
-
-  --color-neutral: oklch(13.18% 0.006 285.82); /* Deep Onyx */
-  --color-neutral-content: oklch(96.08% 0.001 106.89); /* Marble white */
-
-  --color-info: oklch(66.93% 0.113 85.87); /* Imperial Gold for info */
-  --color-info-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-
-  --color-success: oklch(66.93% 0.113 85.87); /* Gold for success */
-  --color-success-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-
-  --color-warning: oklch(66.93% 0.113 85.87); /* Imperial Gold */
-  --color-warning-content: oklch(13.18% 0.006 285.82); /* Deep Onyx text */
-
-  --color-error: oklch(28.63% 0.168 29.23); /* Crimson Velvet */
-  --color-error-content: oklch(96.08% 0.001 106.89); /* White text */
-
-  /* Dark Mode - Elite Roman */
-  --color-dark-base-100: oklch(13.18% 0.006 285.82); /* Deep Onyx Black */
-  --color-dark-base-200: oklch(18.04% 0.008 285.82); /* Darker onyx */
-  --color-dark-base-300: oklch(25.88% 0.012 285.82); /* Gunmetal transition */
-  --color-dark-base-content: oklch(96.08% 0.001 106.89); /* Roman Marble White */
-
-  --color-dark-primary: oklch(66.93% 0.113 85.87); /* Imperial Gold (unchanged) */
-  --color-dark-primary-content: oklch(13.18% 0.006 285.82); /* Deep Onyx on gold */
-
-  --color-dark-secondary: oklch(40.59% 0.014 277.75); /* Gunmetal Gray */
-  --color-dark-secondary-content: oklch(96.08% 0.001 106.89); /* White on gunmetal */
-
-  --color-dark-accent: oklch(35.29% 0.168 29.23); /* Brighter Crimson for dark mode */
-  --color-dark-accent-content: oklch(96.08% 0.001 106.89); /* White on crimson */
-
-  --color-dark-neutral: oklch(96.08% 0.001 106.89); /* Inverted - marble */
-  --color-dark-neutral-content: oklch(13.18% 0.006 285.82); /* Deep Onyx */
-
-  /* Roman Luxury UI Refinements */
-  --radius-selector: 0.75rem; /* Softer for luxury feel */
-  --radius-field: 0.5rem; /* Elegant form inputs */
-  --radius-box: 1rem; /* Premium card radius */
-  --radius-btn: 0.5rem; /* Sophisticated buttons */
-
-  --size-selector: 0.25rem; /* Refined selection indicators */
-  --size-field: 0.5rem; /* Elegant field sizing */
-
-  --border-width: 1px; /* Subtle, refined borders */
-  --border-style: solid;
-
-  /* Roman Premium Effects */
-  --shadow-elevation-1: 0 1px 3px oklch(13.18% 0.006 285.82 / 0.12), 0 1px 2px oklch(13.18% 0.006 285.82 / 0.24);
-  --shadow-elevation-2: 0 4px 6px oklch(13.18% 0.006 285.82 / 0.07), 0 2px 4px oklch(13.18% 0.006 285.82 / 0.06);
-  --shadow-elevation-3: 0 10px 15px oklch(13.18% 0.006 285.82 / 0.1), 0 4px 6px oklch(13.18% 0.006 285.82 / 0.05);
-
-  /* Gold accent glow for premium interactions */
-  --glow-primary: 0 0 20px oklch(66.93% 0.113 85.87 / 0.3);
-  --glow-accent: 0 0 20px oklch(28.63% 0.168 29.23 / 0.3);
+/* MCX Light Theme */
+[data-theme="MCX"] {
+  --color-primary: #C4A100;
+  --color-primary-content: #F5F5F5;
+  --color-secondary: #5A5A5A;
+  --color-secondary-content: #F5F5F5;
+  --color-accent: #8B0000;
+  --color-accent-content: #F5F5F5;
+  --color-neutral: #121212;
+  --color-neutral-content: #F5F5F5;
+  --color-base-100: #F5F5F5;
+  --color-base-200: #EEEEEE;
+  --color-base-300: #DDDDDD;
+  --color-base-content: #121212;
+  --color-info: #C4A100;
+  --color-info-content: #121212;
+  --color-success: #C4A100;
+  --color-success-content: #121212;
+  --color-warning: #C4A100;
+  --color-warning-content: #121212;
+  --color-error: #8B0000;
+  --color-error-content: #F5F5F5;
 }
 
-/* Custom Roman luxury utilities */
+/* MCX Dark Theme */
+[data-theme="MCX-Dark"] {
+  --color-primary: #D4B100;
+  --color-primary-content: #121212;
+  --color-secondary: #6A6A6A;
+  --color-secondary-content: #F5F5F5;
+  --color-accent: #A00000;
+  --color-accent-content: #F5F5F5;
+  --color-neutral: #2A2A2A;
+  --color-neutral-content: #F5F5F5;
+  --color-base-100: #121212;
+  --color-base-200: #1A1A1A;
+  --color-base-300: #2A2A2A;
+  --color-base-content: #F5F5F5;
+  --color-info: #D4B100;
+  --color-info-content: #121212;
+  --color-success: #D4B100;
+  --color-success-content: #121212;
+  --color-warning: #D4B100;
+  --color-warning-content: #121212;
+  --color-error: #A00000;
+  --color-error-content: #F5F5F5;
+}
+
+/* Your custom utilities */
 .mcx-gold-glow {
-  box-shadow: var(--glow-primary);
-  transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 20px #C4A10050;
+    transition: box-shadow 0.3s ease;
 }
 
 .mcx-crimson-glow {
-  box-shadow: var(--glow-accent);
-  transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 20px #8B000050;
+    transition: box-shadow 0.3s ease;
 }
 
 .mcx-marble-texture {
-  background: linear-gradient(
-    135deg,
-    oklch(96.08% 0.001 106.89) 0%,
-    oklch(93.39% 0.002 106.89) 50%,
-    oklch(96.08% 0.001 106.89) 100%
-  );
+    background: linear-gradient(135deg, #F5F5F5 0%, #EEEEEE 50%, #F5F5F5 100%);
 }
 
 .mcx-premium-gradient {
-  background: linear-gradient(135deg, oklch(66.93% 0.113 85.87) 0%, oklch(28.63% 0.168 29.23) 100%);
+    background: linear-gradient(135deg, #C4A100 0%, #8B0000 100%);
+}
+
+/* Theme-aware utilities */
+[data-theme="MCX-Dark"] .mcx-marble-texture {
+    background: linear-gradient(135deg, #121212 0%, #1A1A1A 50%, #121212 100%);
+}
+
+[data-theme="MCX-Dark"] .mcx-premium-gradient {
+    background: linear-gradient(135deg, #D4B100 0%, #A00000 100%);
+}
+/* DRAMATIC theme-aware custom utilities */
+
+/* Light Theme - Roman Palace */
+[data-theme="MCX"] .mcx-marble-texture {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8F8FF 25%, #F0F0F0 50%, #F8F8FF 75%, #FFFFFF 100%);
+    border: 2px solid #FFD700;
+}
+
+[data-theme="MCX"] .mcx-premium-gradient {
+    background: linear-gradient(135deg, #FFD700 0%, #DC143C 100%);
+    color: #000000;
+}
+
+[data-theme="MCX"] .mcx-gold-glow {
+    box-shadow: 0 0 30px #FFD70080, 0 0 60px #FFD70040;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Dark Theme - Underground Catacomb */
+[data-theme="MCX-Dark"] .mcx-marble-texture {
+    background: linear-gradient(135deg, #000000 0%, #1C1C1C 25%, #2F2F2F 50%, #1C1C1C 75%, #000000 100%);
+    border: 2px solid #B8860B;
+}
+
+[data-theme="MCX-Dark"] .mcx-premium-gradient {
+    background: linear-gradient(135deg, #B8860B 0%, #8B0000 100%);
+    color: #FFFFFF;
+}
+
+[data-theme="MCX-Dark"] .mcx-gold-glow {
+    box-shadow: 0 0 30px #B8860B80, 0 0 60px #B8860B40;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Universal utilities */
+.mcx-crimson-glow {
+    box-shadow: 0 0 30px #DC143C50;
+    transition: box-shadow 0.3s ease;
+}
+
+/* DRAMATIC hover effects */
+
+/* Light theme hovers - Roman elegance */
+[data-theme="MCX"] .btn-primary:hover {
+    background-color: #FFA500 !important;
+    box-shadow: 0 0 40px #FFD70080;
+    transform: translateY(-2px) scale(1.05);
+}
+
+[data-theme="MCX"] .btn-accent:hover {
+    background-color: #FF4500 !important;
+    box-shadow: 0 0 40px #DC143C80;
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Dark theme hovers - Mysterious power */
+[data-theme="MCX-Dark"] .btn-primary:hover {
+    background-color: #DAA520 !important;
+    box-shadow: 0 0 40px #B8860B80;
+    transform: translateY(-2px) scale(1.05);
+}
+
+[data-theme="MCX-Dark"] .btn-accent:hover {
+    background-color: #A52A2A !important;
+    box-shadow: 0 0 40px #8B000080;
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* DRAMATIC card styling */
+
+/* Light theme cards - Palace luxury */
+[data-theme="MCX"] .card-premium {
+    border: 3px solid #FFD700;
+    box-shadow: 0 8px 16px #00000030, 0 0 30px #FFD70020;
+    background: linear-gradient(145deg, #FFFFFF 0%, #F8F8FF 100%);
+    transition: all 0.4s ease;
+}
+
+[data-theme="MCX"] .card-premium:hover {
+    border-color: #FFA500;
+    box-shadow: 0 16px 32px #00000040, 0 0 50px #FFD70040;
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Dark theme cards - Catacomb mystery */
+[data-theme="MCX-Dark"] .card-premium {
+    border: 3px solid #B8860B;
+    box-shadow: 0 8px 16px #FFFFFF10, 0 0 30px #B8860B20;
+    background: linear-gradient(145deg, #000000 0%, #1C1C1C 100%);
+    transition: all 0.4s ease;
+}
+
+[data-theme="MCX-Dark"] .card-premium:hover {
+    border-color: #DAA520;
+    box-shadow: 0 16px 32px #FFFFFF20, 0 0 50px #B8860B40;
+    transform: translateY(-4px) scale(1.02);
 }
 
 /* Roman-inspired hover states */
 .btn-primary:hover {
-  box-shadow: var(--glow-primary);
-  transform: translateY(-1px);
+    box-shadow: 0 0 20px #C4A10050;
+    transform: translateY(-1px);
 }
 
 .btn-accent:hover {
-  box-shadow: var(--glow-accent);
-  transform: translateY(-1px);
+    box-shadow: 0 0 20px #8B000050;
+    transform: translateY(-1px);
 }
 
 /* Elite card styling */
 .card-premium {
-  background: var(--color-base-100);
-  border: 1px solid oklch(66.93% 0.113 85.87 / 0.2);
-  box-shadow: var(--shadow-elevation-2);
-  transition: all 0.3s ease;
+    border: 1px solid #C4A10030;
+    box-shadow: 0 4px 6px #12121220;
+    transition: all 0.3s ease;
 }
 
 .card-premium:hover {
-  border-color: oklch(66.93% 0.113 85.87 / 0.4);
-  box-shadow: var(--shadow-elevation-3), var(--glow-primary);
-  transform: translateY(-2px);
+    border-color: #C4A10060;
+    box-shadow: 0 10px 15px #12121230, 0 0 20px #C4A10030;
+    transform: translateY(-2px);
 }
