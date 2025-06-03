@@ -11,7 +11,7 @@ export default function tryParseEnv<T extends ZodRawShape>(
     }
     catch(error){
         if(error instanceof ZodError) {
-            let message = "Mising requireed values in .env \n";
+            let message = "Mising required values in .env \n";
             error.issues.forEach((issue) => {
                 message += `${issue.path[0]}\n`;
             });
