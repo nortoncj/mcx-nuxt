@@ -1,24 +1,15 @@
-<template>
-  <div>
-    <!-- <NuxtRouteAnnouncer />
-    <NuxtWelcome /> -->
-    <VitePwaManifest />
-    <div v-if="bgIsGray" class="bg-[F3F3F1] fixed w-full h-full z-[-1]" />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
-</template>
 <script setup>
-import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
+
+import { useUserStore } from "../stores/user";
+
 const userStore = useUserStore();
-const { isMobile, isPreviewOverlay, updatedLinkId, addLinkOverlay, id } =
-  storeToRefs(userStore);
+const { isMobile, isPreviewOverlay, updatedLinkId, addLinkOverlay, id }
+  = storeToRefs(userStore);
 
 const route = useRoute();
-let show = ref(false);
-let bgIsGray = ref(false);
+const show = ref(false);
+const bgIsGray = ref(false);
 
 onMounted(() => {
   document.documentElement.setAttribute("data-theme", "MCX");
@@ -28,14 +19,14 @@ onMounted(() => {
   isPreviewOverlay.value = false;
   isMobile.value = false;
 
-  checkPath(route.fullPath)
+  checkPath(route.fullPath);
 
   if ("ontouchstart" in window) {
     isMobile.value = true;
   }
 });
 
-const colors = () => {
+function colors() {
   return [
     { id: 1, color: "bg-white", text: "text-black", name: "Air White" },
     { id: 2, color: "bg-gray-800", text: "text-white", name: "Midnight Black" },
@@ -148,13 +139,25 @@ const colors = () => {
       name: "Aurelius",
     },
   ];
-};
+}
 
-const checkPath =(path) => {
-  if(path == '/' || path == '/register'){
-    bgIsGray.value = false
-    return
+function checkPath(path) {
+  if (path == "/" || path == "/register") {
+    bgIsGray.value = false;
+    return;
   }
-  bgIsGray.value = true
+  bgIsGray.value = true;
 }
 </script>
+
+<template>
+  <div>
+    <!-- <NuxtRouteAnnouncer />
+    <NuxtWelcome /> -->
+    <VitePwaManifest />
+    <div v-if="bgIsGray" class="bg-[F3F3F1] fixed w-full h-full z-[-1]" />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+</template>

@@ -1,25 +1,33 @@
 <script lang="ts" setup>
-const currentTheme = ref('MCX');
+const currentTheme = ref("MCX");
 
-const toggleTheme = () => {
-  currentTheme.value = currentTheme.value === 'MCX' ? 'MCX-Dark' : 'MCX';
-  document.documentElement.setAttribute('data-theme', currentTheme.value);
-  console.log('Theme set to:', currentTheme.value);
-};
+function toggleTheme() {
+  currentTheme.value = currentTheme.value === "MCX" ? "MCX-Dark" : "MCX";
+  document.documentElement.setAttribute("data-theme", currentTheme.value);
+  console.log("Theme set to:", currentTheme.value);
+}
 
 onMounted(() => {
-  document.documentElement.setAttribute('data-theme', 'MCX');
+  document.documentElement.setAttribute("data-theme", "MCX");
 });
 </script>
 
 <template>
   <label class="swap swap-rotate">
-    <input 
-      :checked="currentTheme === 'MCX-Dark'" 
-      @change="toggleTheme"
+    <input
+      :checked="currentTheme === 'MCX-Dark'"
       type="checkbox"
+      @change="toggleTheme"
     >
-    <Icon class="swap-on" name="ri:sun-line" size="24" />
-    <Icon class="swap-off" name="ri:moon-fill" size="24" />
+    <Icon
+      class="swap-on"
+      name="ri:sun-line"
+      size="24"
+    />
+    <Icon
+      class="swap-off"
+      name="ri:moon-fill"
+      size="24"
+    />
   </label>
 </template>

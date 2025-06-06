@@ -1,14 +1,15 @@
 import tailwindcss from "@tailwindcss/vite";
+
 import "./lib/env";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
-  pages:true,
-  experimental:{
-    payloadExtraction: false
+  pages: true,
+  experimental: {
+    payloadExtraction: false,
   },
   devtools: { enabled: true },
-  modules: ["@nuxt/eslint", "@nuxt/icon", "nuxt-lodash","@pinia/nuxt","@pinia-plugin-persistedstate/nuxt","@vite-pwa/nuxt", "@nuxtjs/color-mode"],
+  modules: ["@nuxt/eslint", "@nuxt/icon", "nuxt-lodash", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt", "@vite-pwa/nuxt", "@nuxtjs/color-mode"],
   // pwa: {
   //   manifest: {
   //     name:"MCX",
@@ -26,7 +27,7 @@ export default defineNuxtConfig({
   //         sizes:"512x512",
   //         type: "image/png",
   //         },
-        
+
   //     ]
   //   },
   //   devOptions: {
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
   //     type:"module",
   //   },
   // },
- 
+
   css: ["~/assets/css/main.css"],
   eslint: {
     config: {
@@ -53,10 +54,10 @@ export default defineNuxtConfig({
   colorMode: {
     dataValue: "MCX",
   },
-  app:{
-    head:{
-      charset:'utf-8',
-      viewport:'width=device-width, initial-scale-1, maximum-scale=1',
-    }
+  app: {
+    head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale-1, maximum-scale=1",
+    },
   },
 });
