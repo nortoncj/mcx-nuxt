@@ -1,0 +1,95 @@
+.cta-section{
+    background-color: white;
+}
+.cta-hero{
+    /* background: linear-gradient( rgba(90, 90, 90, 0.6), rgba(255, 255, 255, 0.5) ),url("../../images/marble.jpg"); */
+    background: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7) ),url("../../images/marble.jpg");
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 40vh;
+}
+.cta-title{
+    font-family: "Lora";
+    color: var(--gold);
+    /* color: #dfca6a; */
+    font-size: 50px;
+    text-align: center;
+    padding: 100px 20px 100px 20px;
+}
+.cta-hero a {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+a .cta-button {
+    width: 200px;
+}
+.cta-button {
+    font-family: "Poppins";
+    font-size:20px;
+    background-color: var(--gold);
+    /* background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
+    font-weight: 500;
+    color: white;
+    padding: 15px 25px 15px 25px;
+    border-radius:5px;
+}
+.cta-container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+}
+.cta-subTitle{
+    font-family: "Lora";
+    padding: 40px 0 20px 0;
+    font-size: 40px;
+    color: var(--gunmetal);
+    font-weight: 500;
+}
+.cta-text{
+    font-family: "Montserrat";
+    font-size: 20px;
+    padding: 0 0 10px 0;
+}
+.cta-newsletter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    width: 200px;
+    padding: 0 0 40px 0;
+}
+.cta-newsletter-input{
+    margin: 0;
+    padding: 10px;
+    border: 1px var(--gunmetal) solid;
+    border-radius: 5px 0 0 5px;
+}
+.cta-newsletter-btn{
+    margin: 0;
+    background-color: var(--gunmetal);
+    color: var(--marble);
+    padding: 10px;
+    border: 1px var(--gunmetal) solid;
+    border-radius: 0 5px 5px 0;
+    font-weight: 500;
+}
+
+/* TABLET */
+@media only screen and (max-width: 1000px) {
+  
+}
+/* MOBILE */
+@media only screen and (max-width: 500px) {
+  .cta-title {
+    font-size: 30px;
+    padding: 20px 10px 20px 10px;
+  }
+  .cta-container .cta-left{
+    padding: 0 0 0 20px;
+  }
+}
