@@ -30,6 +30,7 @@
   background: #111111;
   padding: 2rem 0;
   border-right: 1px solid #222222;
+  
 }
 
 .logo {
@@ -45,13 +46,14 @@
 
 .nav-menu {
   list-style: none;
+  border-bottom: 1px solid #222222;
 }
 
 .nav-item {
   margin-bottom: 0.5rem;
 }
 
-.nav-link {
+.nav-link,.logout {
   display: flex;
   align-items: center;
   padding: 1rem 2rem;
@@ -59,13 +61,20 @@
   text-decoration: none;
   transition: all 0.3s ease;
 }
+.logout{
+  padding: 20px 5.2rem;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 500;
+  
+}
 
-.nav-link:hover {
+.nav-link:hover{
   background: #1a1a1a;
   color: #ffffff;
 }
 
-.nav-link.active {
+.nav-link.active, .logout:hover  {
   background: #1a1a1a;
   color: #ffffff;
   border-right: 3px solid #d4af37;

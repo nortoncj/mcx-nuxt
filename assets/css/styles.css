@@ -46,9 +46,11 @@ nav ul {
   font-family: "Lora";
   text-transform: uppercase;
   font-size: 20px;
-  color: #99800dfd;
+  color: #73600efd;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .nav-link:hover, .nav-logo:hover, .footer-link:hover {
+  text-shadow: none;
   background: linear-gradient(
     90deg,
     rgba(186, 148, 62, 1) 0%,

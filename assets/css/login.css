@@ -143,7 +143,7 @@
             color: #C4A100;
             letter-spacing: 3px;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
 
         .roman-numerals {
@@ -152,6 +152,7 @@
             color: #C4A100;
             letter-spacing: 4px;
             margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .welcome-title {
@@ -254,7 +255,7 @@
 
         .form-input:focus + .form-label,
         .form-input:not(:placeholder-shown) + .form-label {
-            color: #C4A100;
+            color: #7f6801;
             transform: translateY(-2px);
         }
 
@@ -410,6 +411,7 @@
             
             .mcx-logo {
                 font-size: 2.5rem;
+                
             }
             
             .welcome-title {
