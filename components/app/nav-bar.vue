@@ -1,179 +1,223 @@
 <template>
-  <div class="navigation-section">
-    <nav class="top_nav">
-      <NuxtLink class="nav-link" :to="{ name: 'index' }">
-        <div class="nav-title">MCX MMXXV</div>
-      </NuxtLink>
-      
-      <ul class="nav-left">
-        <a href=""><li class="nav-link">contact</li></a>
-      </ul>
-      
-      <ul class="nav-center">
-        <NuxtLink :to="{ name: 'index' }">
-          <li class="nav-logo">MCX</li>
-        </NuxtLink>
-      </ul>
-      
-      <ul class="nav-right">
-        <NuxtLink :to="{ name: 'admin' }">
-          <li class="nav-link">home</li>
-        </NuxtLink>
-        <NuxtLink :to="{ name: 'products' }">
-          <li class="nav-link">products</li>
-        </NuxtLink>
-        <NuxtLink :to="{ name: 'login' }">
-          <li class="nav-link">vault</li>
-        </NuxtLink>
-      </ul>
-      
-      <div class="end-nav">
-        <button 
-          ref="menuButton" 
-          @click="toggleMobileNav" 
-          class="mobile--menu-btn" 
-          aria-label="Toggle menu" 
-          id="menu-btn"
-        >
-          <img src="~/assets/icons/bars.svg" alt="menu" class="mobile-icon">
-        </button>
-        
-        <button 
-          ref="cartButton" 
-          @click="toggleCart" 
-          class="mobile-cart-btn" 
-          aria-label="Toggle cart" 
-          id="cart-btn"
-        >
-          <img src="~/assets/icons/bag-shopping.svg" alt="cart" class="nav-link cart-button">
-        </button>
-      </div>
-    </nav>
+	<div class="navigation-section">
+		<nav class="top_nav">
+			<NuxtLink
+				class="nav-link"
+				:to="{ name: 'index' }"
+			>
+				<div class="nav-title">MCX MMXXV</div>
+			</NuxtLink>
 
-    <!-- Mobile Overlay -->
-    <Transition name="fade">
-      <div 
-        v-show="isMobileNavOpen"
-        class="mobile-overlay"
-        @click="closeMobileNav"
-      ></div>
-    </Transition>
+			<ul class="nav-left">
+				<a href=""><li class="nav-link">contact</li></a>
+			</ul>
 
-    <!-- Mobile Navigation -->
-    <nav 
-      ref="mobileNav" 
-      class="mobile_nav" 
-      :class="{ active: isMobileNavOpen }"
-    >
-      <div class="top-section">
-        <img 
-          style="width:200px; height:200px" 
-          src="~/assets/images/brands/logo.svg" 
-          alt="MCX Logo" 
-          class="logo"
-        >
-      </div>
-      
-      <div class="bottom-section">
-        <ul>
-          <li>
-            <NuxtLink :to="{ name: 'index' }" @click="closeMobileNav" class="nav-link">
-              home
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink :to="{ name: 'products' }" @click="closeMobileNav" class="nav-link">
-              products
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink :to="{ name: 'login' }" @click="closeMobileNav" class="nav-link">
-              login
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+			<ul class="nav-center">
+				<NuxtLink :to="{ name: 'index' }">
+					<li class="nav-logo">MCX</li>
+				</NuxtLink>
+			</ul>
 
-    <!-- Mobile Cart -->
-    <aside 
-      ref="cartNav" 
-      :class="{ active: isCartOpen }" 
-      class="mobile_cart"
-    >
-      <div class="cart-top">
-        <h1 class="cart-title">Your Cart</h1>
-        <button @click="closeCart" class="close-btn" aria-label="Close cart">
-          ✕
-        </button>
-      </div>
-      
-      <div class="cart-items-card">
-        <div class="item-card">
-          <img class="card-item" src="~/assets/images/demo-card2.png" alt="MCX Card"/>
-          <div class="item-info">
-            <div class="item-left">
-              <div class="item-name">MCX Card</div>
-              <div class="item-quantity">
-                <button class="qty">+</button> 
-                <span>1</span>  
-                <button class="qty">-</button>
-              </div>
-            </div>
-            <div class="item-right">
-              <div class="item-price">$49</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="cart-end">
-          <div class="total">
-            <p>Total</p>
-            <p>$49</p>
-          </div>
-          <button @click="closeCart" class="checkout">Checkout</button>
-        </div>
-      </div>
-    </aside>
+			<ul class="nav-right">
+				<NuxtLink :to="{ name: 'admin' }">
+					<li class="nav-link">home</li>
+				</NuxtLink>
+				<NuxtLink :to="{ name: 'products' }">
+					<li class="nav-link">products</li>
+				</NuxtLink>
+				<NuxtLink :to="{ name: 'login' }">
+					<li class="nav-link">vault</li>
+				</NuxtLink>
+			</ul>
 
-    <!-- Cart Overlay -->
-    <Transition name="fade">
-      <div 
-        v-show="isCartOpen" 
-        @click="closeCart" 
-        class="mobile-overlay"
-      ></div>
-    </Transition>
-  </div>
+			<div class="end-nav">
+				<button
+					id="menu-btn"
+					ref="menuButton"
+					class="mobile--menu-btn"
+					aria-label="Toggle menu"
+					@click="toggleMobileNav"
+				>
+					<img
+						src="~/assets/icons/bars.svg"
+						alt="menu"
+						class="mobile-icon"
+					>
+				</button>
+
+				<button
+					id="cart-btn"
+					ref="cartButton"
+					class="mobile-cart-btn"
+					aria-label="Toggle cart"
+					@click="toggleCart"
+				>
+					<img
+						src="~/assets/icons/bag-shopping.svg"
+						alt="cart"
+						class="nav-link cart-button"
+					>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Mobile Overlay -->
+		<Transition name="fade">
+			<div
+				v-show="isMobileNavOpen"
+				class="mobile-overlay"
+				@click="closeMobileNav"
+			/>
+		</Transition>
+
+		<!-- Mobile Navigation -->
+		<nav
+			ref="mobileNav"
+			class="mobile_nav"
+			:class="{ active: isMobileNavOpen }"
+		>
+			<div class="top-section">
+				<img
+					style="width:200px; height:200px"
+					src="~/assets/images/brands/logo.svg"
+					alt="MCX Logo"
+					class="logo"
+				>
+			</div>
+
+			<div class="bottom-section">
+				<ul>
+					<li>
+						<NuxtLink
+							:to="{ name: 'index' }"
+							class="nav-link"
+							@click="closeMobileNav"
+						>
+							home
+						</NuxtLink>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'products' }"
+							class="nav-link"
+							@click="closeMobileNav"
+						>
+							products
+						</NuxtLink>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'login' }"
+							class="nav-link"
+							@click="closeMobileNav"
+						>
+							login
+						</NuxtLink>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Mobile Cart -->
+		<aside
+			ref="cartNav"
+			:class="{ active: isCartOpen }"
+			class="mobile_cart"
+		>
+			<div class="cart-top">
+				<h1 class="cart-title">
+					Your Cart
+				</h1>
+				<button
+					class="close-btn"
+					aria-label="Close cart"
+					@click="closeCart"
+				>
+					✕
+				</button>
+			</div>
+
+			<div class="cart-items-card">
+				<div class="item-card">
+					<img
+						class="card-item"
+						src="~/assets/images/demo-card2.png"
+						alt="MCX Card"
+					>
+					<div class="item-info">
+						<div class="item-left">
+							<div class="item-name">
+								MCX Card
+							</div>
+							<div class="item-quantity">
+								<button class="qty">
+									+
+								</button>
+								<span>1</span>
+								<button class="qty">
+									-
+								</button>
+							</div>
+						</div>
+						<div class="item-right">
+							<div class="item-price">
+								$49
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="cart-end">
+					<div class="total">
+						<p>Total</p>
+						<p>$49</p>
+					</div>
+					<button
+						class="checkout"
+						@click="closeCart"
+					>
+						Checkout
+					</button>
+				</div>
+			</div>
+		</aside>
+
+		<!-- Cart Overlay -->
+		<Transition name="fade">
+			<div
+				v-show="isCartOpen"
+				class="mobile-overlay"
+				@click="closeCart"
+			/>
+		</Transition>
+	</div>
 </template>
 
 <script setup>
 // Use the mobile navigation composable
 const {
-  menuButton,
-  mobileNav,
-  cartButton,
-  cartNav,
-  isMobileNavOpen,
-  isCartOpen,
-  toggleMobileNav,
-  closeMobileNav,
-  toggleCart,
-  closeCart
-} = useMobileNavigation()
+	menuButton,
+	mobileNav,
+	cartButton,
+	cartNav,
+	isMobileNavOpen,
+	isCartOpen,
+	toggleMobileNav,
+	closeMobileNav,
+	toggleCart,
+	closeCart,
+} = useMobileNavigation();
 
 // Close menus on route change
-const route = useRoute()
+const route = useRoute();
 watch(() => route.path, () => {
-  closeMobileNav()
-  closeCart()
-})
+	closeMobileNav();
+	closeCart();
+});
 </script>
 
 <style scoped>
 @import "~/assets/css/styles.css";
-
-
 
 /* Mobile Navigation */
 .mobile_nav {
@@ -306,7 +350,7 @@ watch(() => route.path, () => {
 .item-name {
   font-weight: 400;
   margin-bottom: 0.5rem;
-  
+
 }
 
 .item-quantity {
@@ -388,11 +432,11 @@ watch(() => route.path, () => {
   .nav-right {
     display: none;
   }
-  
+
   .end-nav {
     display: flex;
   }
-  
+
   .nav-center {
     position: absolute;
     left: 50%;
@@ -404,7 +448,7 @@ watch(() => route.path, () => {
   .mobile_nav {
     width: 100vw;
   }
-  
+
   .mobile_cart {
     width: 100vw;
   }

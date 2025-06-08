@@ -1,552 +1,674 @@
 <template>
-    <div class="dashboard">
-      
-  
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">User Growth</div>
-          <div class="stat-value">{{ data.userGrowth.value.toLocaleString() }}</div>
-          <div class="stat-change" :class="{ positive: data.userGrowth.change > 0, negative: data.userGrowth.change < 0 }">
-            {{ data.userGrowth.change > 0 ? '+' : '' }}{{ data.userGrowth.change }}%
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Total Sales</div>
-          <div class="stat-value">${{ data.totalSales.value.toLocaleString() }}</div>
-          <div class="stat-change" :class="{ positive: data.totalSales.change > 0, negative: data.totalSales.change < 0 }">
-            {{ data.totalSales.change > 0 ? '+' : '' }}{{ data.totalSales.change }}%
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Engagement</div>
-          <div class="stat-value">{{ data.engagement.value.toFixed(1) }}%</div>
-          <div class="stat-change" :class="{ positive: data.engagement.change > 0, negative: data.engagement.change < 0 }">
-            {{ data.engagement.change > 0 ? '+' : '' }}{{ data.engagement.change }}%
-          </div>
-        </div>
-      </div>
-  
-      <div class="charts-section">
-        <div class="chart-card">
-          <h2 class="section-title">CHARTS</h2>
-          <div class="chart-header">
-            <h3 class="chart-title">User & Sales Growth</h3>
-            <select 
-              v-model="chartSettings.selectedView" 
-              @change="handleChartChange"
-              class="chart-dropdown"
-            >
-              <option value="both">Both</option>
-              <option value="users">Users</option>
-              <option value="sales">Sales</option>
-            </select>
-          </div>
-          <div class="chart-area">
-            <svg class="chart-line" viewBox="0 -20 400 120">
-              <!-- Define gradients for area fills -->
-              <defs>
-                <linearGradient id="userGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style="stop-color:#c4a100;stop-opacity:0.3" />
-                  <stop offset="100%" style="stop-color:#c4a100;stop-opacity:0.05" />
-                </linearGradient>
-                <linearGradient id="salesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style="stop-color:#8B0000;stop-opacity:0.3" />
-                  <stop offset="100%" style="stop-color:#8B0000;stop-opacity:0.05" />
-                </linearGradient>
-              </defs>
-  
-              <!-- User area fill -->
-              <path 
-                v-if="chartData.userAreaPath && chartSettings.showUsers" 
-                :d="chartData.userAreaPath"
-                fill="url(#userGradient)"
-                class="chart-area-fill user-area"
-              />
-              
-              <!-- Sales area fill -->
-              <path 
-                v-if="chartData.salesAreaPath && chartSettings.showSales" 
-                :d="chartData.salesAreaPath"
-                fill="url(#salesGradient)"
-                class="chart-area-fill sales-area"
-              />
-  
-              <!-- User growth line -->
-              <path 
-                v-if="chartData.userGrowthPath && chartSettings.showUsers" 
-                class="chart-path user-line" 
-                :d="chartData.userGrowthPath"
-                fill="none"
-                stroke="#c4a100"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              
-              <!-- Sales growth line -->
-              <path 
-                v-if="chartData.salesGrowthPath && chartSettings.showSales" 
-                class="chart-path-secondary sales-line" 
-                :d="chartData.salesGrowthPath"
-                fill="none"
-                stroke="#8B0000"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-  
-              <!-- Data points for users -->
-              <g v-if="chartData.users.length > 0 && chartSettings.showUsers">
-                <circle 
-                  v-for="(value, index) in chartData.users" 
-                  :key="`user-${index}`"
-                  :cx="(index / (chartData.users.length - 1)) * 400"
-                  :cy="80 - ((value - Math.min(...chartData.users)) / (Math.max(...chartData.users) - Math.min(...chartData.users))) * 60"
-                  r="5"
-                  fill="#c4a100"
-                  stroke="white"
-                  stroke-width="2"
-                  class="chart-point user-point"
-                >
-                  <title>{{ chartData.months[index] }}: {{ value.toLocaleString() }} users</title>
-                </circle>
-              </g>
-              
-              <!-- Data points for sales -->
-              <g v-if="chartData.sales.length > 0 && chartSettings.showSales">
-                <circle 
-                  v-for="(value, index) in chartData.sales" 
-                  :key="`sales-${index}`"
-                  :cx="(index / (chartData.sales.length - 1)) * 400"
-                  :cy="80 - ((value - Math.min(...chartData.sales)) / (Math.max(...chartData.sales) - Math.min(...chartData.sales))) * 60 + 10"
-                  r="4"
-                  fill="#8B0000"
-                  stroke="white"
-                  stroke-width="2"
-                  class="chart-point sales-point"
-                >
-                  <title>{{ chartData.months[index] }}: ${{ value }}k sales</title>
-                </circle>
-              </g>
-            </svg>
-            
-            <div class="chart-labels">
-              <span v-for="month in chartData.months" :key="month">{{ month }}</span>
-            </div>
-            
-            <!-- Chart Legend -->
-            <div class="chart-legend">
-              <div v-if="chartSettings.showUsers" class="legend-item">
-                <div class="legend-color" style="background: #c4a100;"></div>
-                <span>Users ({{ chartData.users[chartData.users.length - 1]?.toLocaleString() || 0 }})</span>
-              </div>
-              <div v-if="chartSettings.showSales" class="legend-item">
-                <div class="legend-color" style="background: #8B0000;"></div>
-                <span>Sales (${{ chartData.sales[chartData.sales.length - 1] || 0 }}k)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="chart-card">
-          <h2 class="section-title">RECENT ACTIVITY</h2>
-          <ul class="activity-list">
-            <li v-for="(activity, index) in activities" :key="`${activity.title}-${index}`" class="activity-item">
-              <div class="activity-icon" :class="`activity-${activity.type}`">{{ activity.icon }}</div>
-              <div class="activity-content">
-                <div class="activity-title">{{ activity.title }}</div>
-                <div class="activity-time">{{ activity.time }}</div>
-              </div>
-              <div class="activity-indicator" :class="`indicator-${activity.type}`"></div>
-            </li>
-          </ul>
-          
-          <!-- Activity Stats -->
-          <div class="activity-stats">
-            <div class="activity-count">
-              <span class="count-number">{{ activities.length }}</span>
-              <span class="count-label">Recent</span>
-            </div>
-            <button @click="updateActivities" class="refresh-btn">
-              <span class="refresh-icon">🔄</span>
-            </button>
-          </div>
-        </div>
-      </div>
-  
-      <h2 class="section-title">SECURITY ALERT</h2>
-      <div class="security-alerts">
-        <div class="alert-card">
-          <div class="alert-icon">⚠</div>
-          <div class="alert-title">Unusual Activity Detected</div>
-          <div class="alert-message">Immediate action required to protect your data.</div>
-        </div>
-        <div class="alert-card">
-          <div class="alert-icon">⚠</div>
-          <div class="alert-title">Unusual Activity</div>
-          <div class="alert-message">Immediate action required to protect your data.</div>
-        </div>
-      </div>
-  
-      <!-- Debug Panel (remove in production) -->
-      <div class="debug-panel" style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 1rem; border-radius: 8px; font-size: 12px;">
-        <div><strong>Debug Info:</strong></div>
-        <div>User Growth: {{ data.userGrowth.value }} ({{ data.userGrowth.change }}%)</div>
-        <div>Total Sales: ${{ data.totalSales.value }} ({{ data.totalSales.change }}%)</div>
-        <div>Engagement: {{ data.engagement.value.toFixed(1) }}% ({{ data.engagement.change }}%)</div>
-        <div>Activities: {{ activities.length }}</div>
-        <div>Chart Selection: {{ chartSettings.selectedView }}</div>
-        <div>Mobile Menu: {{ isMobileMenuOpen ? 'Open' : 'Closed' }}</div>
-        <div>Show Users: {{ chartSettings.showUsers }}</div>
-        <div>Show Sales: {{ chartSettings.showSales }}</div>
-        <div>Chart Users: {{ chartData.users.join(', ') }}</div>
-        <div>Chart Sales: {{ chartData.sales.join(', ') }}</div>
-        <div style="margin-top: 0.5rem;">
-          <button @click="updateStats" style="margin-right: 0.5rem; padding: 0.25rem 0.5rem; background: #c4a100; border: none; border-radius: 4px; color: black; cursor: pointer;">
-            Update Stats
-          </button>
-          <button @click="generateChartData" style="margin-right: 0.5rem; padding: 0.25rem 0.5rem; background: #8B0000; border: none; border-radius: 4px; color: white; cursor: pointer;">
-            New Charts
-          </button>
-          <button @click="updateActivities" style="padding: 0.25rem 0.5rem; background: #22c55e; border: none; border-radius: 4px; color: white; cursor: pointer;">
-            Add Activity
-          </button>
-        </div>
-      </div>
-    </div>
-  </template>
-  
-  <script setup>
-  definePageMeta({
-    layout: 'admin'
-  })
-  
-  // Use the dashboard composable
-  const { 
-    data, 
-    activities, 
-    chartData, 
-    chartSettings,
-    updateStats, 
-    updateActivities, 
-    generateChartData, 
-    changeChartView 
-  } = useDashboard()
-  
-  
-  
-  // Optional: Manual refresh button functionality
-  const handleRefresh = () => {
-    updateStats()
-    updateActivities()
-    generateChartData()
+	<div class="main-content">
+		<header class="header">
+			<div class="profile-header">
+				<img
+					:src="currentUser.avatar"
+					:alt="currentUser.name"
+					class="profile-avatar"
+					@click="handleAvatarUpload"
+				>
+				<div class="profile-info">
+					<h1>{{ currentUser.name }}</h1>
+					<p class="profile-subtitle">
+						{{ currentUser.title }} | {{ currentUser.department }}
+					</p>
+				</div>
+			</div>
+		</header>
+
+		<div class="content-grid">
+			<div class="card">
+				<h2 class="card-title">
+					Profile Customization
+				</h2>
+				<div class="profile-customization">
+					<div
+						class="avatar-upload"
+						@click="handleAvatarUpload"
+					>
+						<img
+							:src="avatarPreview"
+							alt="Avatar"
+							class="avatar-preview"
+							@dragover.prevent="handleDragOver"
+							@dragleave="handleDragLeave"
+							@drop.prevent="handleDrop"
+						>
+						<div class="upload-overlay">
+							Upload New
+						</div>
+					</div>
+					<div class="profile-fields">
+						<div class="field-group">
+							<div class="form-field">
+								<label class="form-label">Name</label>
+								<input
+									v-model="currentUser.name"
+									type="text"
+									class="form-input"
+									@input="validateField($event, 'name')"
+									@focus="handleFieldFocus"
+									@blur="handleFieldBlur('name')"
+								>
+								<div
+									v-if="fieldErrors.name"
+									class="error-message"
+								>
+									{{ fieldErrors.name }}
+								</div>
+							</div>
+							<div class="form-field">
+								<label class="form-label">Title</label>
+								<input
+									v-model="currentUser.title"
+									type="text"
+									class="form-input"
+									@input="validateField($event, 'title')"
+									@focus="handleFieldFocus"
+									@blur="handleFieldBlur('title')"
+								>
+								<div
+									v-if="fieldErrors.title"
+									class="error-message"
+								>
+									{{ fieldErrors.title }}
+								</div>
+							</div>
+						</div>
+						<div class="form-field">
+							<label class="form-label">Department</label>
+							<input
+								v-model="currentUser.department"
+								type="text"
+								class="form-input"
+								@input="validateField($event, 'department')"
+								@focus="handleFieldFocus"
+								@blur="handleFieldBlur('department')"
+							>
+							<div
+								v-if="fieldErrors.department"
+								class="error-message"
+							>
+								{{ fieldErrors.department }}
+							</div>
+						</div>
+						<div class="action-buttons">
+							<button
+								class="btn btn-primary"
+								@click="openBrandingManager"
+							>
+								Manage Branding
+							</button>
+							<a
+								href="#"
+								class="btn btn-secondary"
+								@click.prevent="openPortfolio"
+							>
+								Portfolio →
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h2 class="card-title">
+					Subscription
+				</h2>
+				<div class="subscription-info">
+					<div class="subscription-tier">
+						{{ currentUser.subscription.tier }}
+					</div>
+					<span class="member-badge">{{ currentUser.subscription.status }}</span>
+					<p class="renewal-date">
+						Renews on {{ currentUser.subscription.renewalDate }}
+					</p>
+					<button
+						class="btn btn-primary"
+						@click="handleSubscriptionUpgrade"
+					>
+						Upgrade Plan
+					</button>
+				</div>
+				<div style="margin-top: 2rem;">
+					<div
+						class="billing-item"
+						@click="openBillingHistory"
+					>
+						<span>Billing & History</span>
+						<span class="arrow-right">→</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h2 class="card-title">
+					NFC Card Stats
+				</h2>
+				<div class="nfc-stats">
+					<div
+						class="nfc-card-preview"
+						@click="simulateNFCTap"
+					>
+						<div class="nfc-logo">
+							MCX
+						</div>
+					</div>
+					<div class="stats-info">
+						<div class="stat-label">
+							Total Taps
+						</div>
+						<div
+							ref="statValue"
+							class="stat-value"
+						>
+							{{ currentUser.nfcStats.totalTaps.toLocaleString() }}
+						</div>
+						<a
+							href="#"
+							class="view-details"
+							@click.prevent="openNFCDetails"
+						>
+							View Details
+							<span class="arrow-right">→</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h2 class="card-title">
+					Add-ons
+				</h2>
+				<ul class="addons-list">
+					<li
+						v-for="(addon, index) in addons"
+						:key="index"
+						class="addon-item"
+						:class="{ enabled: addon.enabled, disabled: !addon.enabled }"
+						@click="toggleAddon(index)"
+					>
+						{{ addon.name }}
+						<span class="addon-status">{{ addon.enabled ? '✓' : '○' }}</span>
+					</li>
+				</ul>
+				<button
+					class="btn btn-primary"
+					@click="openStore"
+				>
+					Visit Store
+				</button>
+			</div>
+		</div>
+
+		<!-- Notification Container -->
+		<div class="notification-container">
+			<Transition
+				v-for="notification in notifications"
+				:key="notification.id"
+				name="notification"
+			>
+				<div
+					v-show="notification.visible"
+					:class="['notification', `notification-${notification.type}`]"
+				>
+					{{ notification.message }}
+				</div>
+			</Transition>
+		</div>
+	</div>
+</template>
+
+<script setup>
+import { ref, reactive, onMounted, onBeforeUnmount, nextTick } from "vue";
+
+definePageMeta({
+	layout: "admin",
+});
+
+// Reactive data
+const currentUser = reactive({
+	name: "David Harrison",
+	title: "Senior Associate",
+	department: "Corporate Law",
+	avatar: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23333'/%3E%3Cstop offset='100%25' stop-color='%23555'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='60' fill='url(%23grad)'/%3E%3Ccircle cx='60' cy='45' r='20' fill='%23888'/%3E%3Cpath d='M30 85 Q60 70 90 85' fill='%23888'/%3E%3C/svg%3E",
+	subscription: {
+		tier: "Premium",
+		status: "MEMBER",
+		renewalDate: "May 13, 2024",
+		isActive: true,
+	},
+	nfcStats: {
+		totalTaps: 1589,
+		lastUpdated: new Date(),
+	},
+});
+
+const addons = reactive([
+	{ name: "Custom Card Design", enabled: true, price: 29.99 },
+	{ name: "Profile Enhancements", enabled: true, price: 19.99 },
+	{ name: "Networking Toolkit", enabled: false, price: 39.99 },
+]);
+
+const avatarPreview = ref("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23333'/%3E%3Cstop offset='100%25' stop-color='%23555'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='12' fill='url(%23grad2)'/%3E%3Ccircle cx='50' cy='35' r='15' fill='%23888'/%3E%3Cpath d='M25 75 Q50 60 75 75' fill='%23888'/%3E%3C/svg%3E");
+
+const isMobileMenuOpen = ref(false);
+const fieldErrors = reactive({});
+const notifications = ref([]);
+const statValue = ref(null);
+
+let notificationId = 0;
+
+// Avatar Upload Methods
+const handleAvatarUpload = () => {
+	const input = document.createElement("input");
+	input.type = "file";
+	input.accept = "image/*";
+
+	input.addEventListener("change", (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			processAvatarFile(file);
+		}
+	});
+
+	input.click();
+};
+
+const handleDragOver = (e) => {
+	e.target.style.opacity = "0.7";
+	e.target.style.transform = "scale(1.05)";
+};
+
+const handleDragLeave = (e) => {
+	e.target.style.opacity = "1";
+	e.target.style.transform = "scale(1)";
+};
+
+const handleDrop = (e) => {
+	e.target.style.opacity = "1";
+	e.target.style.transform = "scale(1)";
+
+	const files = e.dataTransfer.files;
+	if (files.length > 0) {
+		processAvatarFile(files[0]);
+	}
+};
+
+const processAvatarFile = (file) => {
+	if (!file.type.startsWith("image/")) {
+		showNotification("Please select a valid image file", "error");
+		return;
+	}
+
+	if (file.size > 5 * 1024 * 1024) {
+		showNotification("File size must be less than 5MB", "error");
+		return;
+	}
+
+	const reader = new FileReader();
+	reader.onload = (e) => {
+		const imageUrl = e.target.result;
+		updateAvatar(imageUrl);
+	};
+	reader.readAsDataURL(file);
+};
+
+const updateAvatar = (imageUrl) => {
+	currentUser.avatar = imageUrl;
+	avatarPreview.value = imageUrl;
+	showNotification("Avatar updated successfully!", "success");
+};
+
+// Form Validation Methods
+const validateField = (event, fieldType) => {
+	const value = event.target.value.trim();
+	let isValid = true;
+	let message = "";
+
+	switch (fieldType) {
+		case "name":
+			isValid = value.length >= 2;
+			message = isValid ? "" : "Name must be at least 2 characters";
+			break;
+		case "title":
+			isValid = value.length >= 2;
+			message = isValid ? "" : "Title must be at least 2 characters";
+			break;
+		case "department":
+			isValid = value.length >= 2;
+			message = isValid ? "" : "Department must be at least 2 characters";
+			break;
+	}
+
+	if (isValid) {
+		delete fieldErrors[fieldType];
+	}
+	else {
+		fieldErrors[fieldType] = message;
+	}
+
+	// Update border color
+	if (isValid) {
+		event.target.style.borderColor = "rgba(212, 175, 55, 0.3)";
+		event.target.style.boxShadow = "none";
+	}
+	else {
+		event.target.style.borderColor = "#ef4444";
+		event.target.style.boxShadow = "0 0 0 2px rgba(239, 68, 68, 0.2)";
+	}
+
+	return isValid;
+};
+
+const handleFieldFocus = (e) => {
+	e.target.parentElement.style.transform = "translateY(-2px)";
+};
+
+const handleFieldBlur = (fieldType) => {
+	// Handle visual blur effect
+	event.target.parentElement.style.transform = "translateY(0)";
+
+	// Save the field if validation passes
+	if (!fieldErrors[fieldType]) {
+		showNotification("Profile updated", "success");
+	}
+};
+
+// Action Methods
+const openBrandingManager = () => {
+	showNotification("Opening Branding Manager...", "info");
+	console.log("Branding Manager opened");
+};
+
+const openPortfolio = () => {
+	showNotification("Opening Portfolio...", "info");
+	console.log("Portfolio opened");
+};
+
+const handleSubscriptionUpgrade = () => {
+	showNotification("Redirecting to upgrade options...", "info");
+	console.log("Subscription upgrade initiated");
+};
+
+const openBillingHistory = () => {
+	showNotification("Opening billing history...", "info");
+	console.log("Billing history opened");
+};
+
+const openNFCDetails = () => {
+	showNotification("Opening detailed NFC analytics...", "info");
+	console.log("NFC details opened");
+};
+
+const openStore = () => {
+	showNotification("Opening MCX Store...", "info");
+	console.log("Store opened");
+};
+
+// NFC Methods
+const simulateNFCTap = () => {
+	currentUser.nfcStats.totalTaps++;
+
+	// Visual feedback
+	const nfcCard = document.querySelector(".nfc-card-preview");
+
+	if (nfcCard) {
+		nfcCard.style.transform = "scale(0.95)";
+		nfcCard.style.boxShadow = "0 0 20px rgba(212, 175, 55, 0.5)";
+	}
+
+	if (statValue.value) {
+		statValue.value.style.transform = "scale(1.1)";
+		statValue.value.style.color = "#22c55e";
+	}
+
+	setTimeout(() => {
+		if (nfcCard) {
+			nfcCard.style.transform = "scale(1)";
+			nfcCard.style.boxShadow = "none";
+		}
+		if (statValue.value) {
+			statValue.value.style.transform = "scale(1)";
+			statValue.value.style.color = "#d4af37";
+		}
+	}, 200);
+
+	showNotification("NFC Tap simulated!", "success");
+};
+
+// Add-on Methods
+const toggleAddon = (index) => {
+	addons[index].enabled = !addons[index].enabled;
+
+	if (addons[index].enabled) {
+		showNotification(`${addons[index].name} enabled`, "success");
+	}
+	else {
+		showNotification(`${addons[index].name} disabled`, "info");
+	}
+};
+
+// Notification System
+const showNotification = (message, type = "info") => {
+	const id = ++notificationId;
+	const notification = {
+		id,
+		message,
+		type,
+		visible: true,
+	};
+
+	notifications.value.push(notification);
+
+	setTimeout(() => {
+		notification.visible = false;
+		setTimeout(() => {
+			const index = notifications.value.findIndex(n => n.id === id);
+			if (index > -1) {
+				notifications.value.splice(index, 1);
+			}
+		}, 300);
+	}, 4000);
+};
+
+// Keyboard Shortcuts
+const handleKeyboard = (e) => {
+	if (e.ctrlKey || e.metaKey) {
+		switch (e.key) {
+			case "s":
+				e.preventDefault();
+				showNotification("Profile saved successfully!", "success");
+				break;
+			case "u":
+				e.preventDefault();
+				handleAvatarUpload();
+				break;
+			case "r":
+				e.preventDefault();
+				location.reload();
+				break;
+		}
+	}
+
+	if (e.key === "Escape" && isMobileMenuOpen.value) {
+		closeMobileMenu();
+	}
+};
+
+// Real-time Updates
+const startRealTimeUpdates = () => {
+	setInterval(() => {
+		if (Math.random() > 0.98) {
+			currentUser.nfcStats.totalTaps++;
+
+			if (notifications.value.length < 2) {
+				showNotification("New NFC tap detected!", "info");
+			}
+		}
+	}, 15000);
+};
+
+// Lifecycle Hooks
+onMounted(() => {
+	document.addEventListener("keydown", handleKeyboard);
+	startRealTimeUpdates();
+	console.log("MCX Account Dashboard mounted");
+});
+
+onBeforeUnmount(() => {
+	document.removeEventListener("keydown", handleKeyboard);
+});
+</script>
+
+<style scoped>
+@import "~/assets/css/account/account.css";
+
+/* Additional Vue-specific styles */
+.form-field {
+  transition: transform 0.3s ease;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  const handleChartChange = () => {
-    console.log('Chart selection changed to:', chartSettings.value.selectedView)
-    console.log('Show users:', chartSettings.value.showUsers)
-    console.log('Show sales:', chartSettings.value.showSales)
-    changeChartView(chartSettings.value.selectedView)
-  }
-  
-  // Log the data to console for debugging
-  onMounted(() => {
-    console.log('Dashboard mounted with data:', {
-      data: data.value,
-      activities: activities.value,
-      chartData: chartData.value
-    })
-    
-    // Add escape key listener
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isMobileMenuOpen.value) {
-        closeMobileMenu()
-      }
-    }
-    
-    document.addEventListener('keydown', handleEscape)
-    
-    // Cleanup on unmount
-    onBeforeUnmount(() => {
-      document.removeEventListener('keydown', handleEscape)
-    })
-  })
-  </script>
-  
-  <style scoped>
-  @import "~/assets/css/admin/admin.css";
-  
-  /* Additional styles for dynamic content */
-  .stat-change.positive {
-    color: #22c55e;
-  }
-  
-  .stat-change.negative {
-    color: #ef4444;
-  }
-  
-  /* Chart enhancements */
-  .chart-legend {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(196, 161, 0, 0.1);
-  }
-  
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .legend-color {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-  
-  /* Activity enhancements */
-  .activity-item {
-    position: relative;
-    transition: all 0.3s ease;
-  }
-  
-  .activity-item:hover {
-    background: rgba(196, 161, 0, 0.05);
-    transform: translateX(5px);
-  }
-  
-  .activity-indicator {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    opacity: 0.6;
-  }
-  
-  .indicator-achievement { background: #c4a100; }
-  .indicator-card { background: #8B0000; }
-  .indicator-transaction { background: #22c55e; }
-  .indicator-security { background: #ef4444; }
-  .indicator-message { background: #3b82f6; }
-  .indicator-notification { background: #f59e0b; }
-  .indicator-user { background: #8b5cf6; }
-  .indicator-opportunity { background: #ec4899; }
-  .indicator-business { background: #06b6d4; }
-  .indicator-report { background: #84cc16; }
-  
-  .activity-achievement { background: linear-gradient(45deg, #c4a100, #d4b520); }
-  .activity-card { background: linear-gradient(45deg, #8B0000, #a00000); }
-  .activity-transaction { background: linear-gradient(45deg, #22c55e, #16a34a); }
-  .activity-security { background: linear-gradient(45deg, #ef4444, #dc2626); }
-  .activity-message { background: linear-gradient(45deg, #3b82f6, #2563eb); }
-  .activity-notification { background: linear-gradient(45deg, #f59e0b, #d97706); }
-  .activity-user { background: linear-gradient(45deg, #8b5cf6, #7c3aed); }
-  .activity-opportunity { background: linear-gradient(45deg, #ec4899, #db2777); }
-  .activity-business { background: linear-gradient(45deg, #06b6d4, #0891b2); }
-  .activity-report { background: linear-gradient(45deg, #84cc16, #65a30d); }
-  
-  .activity-stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(196, 161, 0, 0.1);
-  }
-  
-  .activity-count {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .count-number {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #c4a100;
-  }
-  
-  .count-label {
-    font-size: 0.8rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .refresh-btn {
-    background: none;
-    border: 2px solid #c4a100;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .refresh-btn:hover {
-    background: #c4a100;
-    transform: rotate(180deg);
-  }
-  
-  .refresh-icon {
-    font-size: 1.2rem;
-  }
-  
-  .debug-panel {
-    z-index: 9999;
-    max-width: 320px;
-    font-family: monospace;
-  }
-  
-  /* Chart area and line enhancements */
-  .chart-area-fill {
-    transition: all 0.3s ease;
-    opacity: 0.8;
-  }
-  
-  .chart-area-fill:hover {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
-  
-  .chart-path,
-  .chart-path-secondary {
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  }
-  
-  .user-line:hover {
-    stroke-width: 4;
-    filter: drop-shadow(0 0 8px rgba(196, 161, 0, 0.6));
-  }
-  
-  .sales-line:hover {
-    stroke-width: 4;
-    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.6));
-  }
-  
-  .chart-point {
-    transition: all 0.2s ease;
-    cursor: pointer;
-  }
-  
-  .user-point:hover {
-    r: 7;
-    filter: drop-shadow(0 0 6px rgba(196, 161, 0, 0.8));
-  }
-  
-  .sales-point:hover {
-    r: 6;
-    filter: drop-shadow(0 0 6px rgba(139, 0, 0, 0.8));
-  }
-  
-  /* Chart dropdown styling */
-  .chart-dropdown {
-    background: rgba(196, 161, 0, 0.1);
-    border: 2px solid #c4a100;
-    border-radius: 6px;
-    padding: 0.5rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .chart-dropdown:hover {
-    background: rgba(196, 161, 0, 0.2);
-    transform: translateY(-1px);
-  }
-  
-  .chart-dropdown:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(196, 161, 0, 0.3);
-  }
-  
-  
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .user-avatar {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #c4a100, #d4b520);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-  }
-  
-  .user-details {
-    flex: 1;
-  }
-  
-  .user-name {
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-  
-  .user-role {
-    color: #c4a100;
-    font-size: 0.9rem;
-  }
-  
-  /* Transitions */
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.3s ease;
-  }
-  
-  .fade-enter-from,
-  .fade-leave-to {
+}
+
+/* Mobile Menu Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+/* Notification Transitions */
+.notification-enter-active {
+  animation: slideInRight 0.3s ease;
+}
+
+.notification-leave-active {
+  animation: slideOutRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
     opacity: 0;
   }
-  
-  .slide-enter-active,
-  .slide-leave-active {
-    transition: transform 0.3s ease;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .slide-enter-from,
-  .slide-leave-to {
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
     transform: translateX(100%);
+    opacity: 0;
   }
-  
-  /* Mobile responsive */
-  @media (min-width: 769px) {
-    .menu-toggle {
-      display: none;
-    }
-    
-    .mobile-menu,
-    .mobile-menu-overlay {
-      display: none !important;
-    }
+}
+
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.notification {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  font-weight: 500;
+}
+
+.notification-success {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.notification-error {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.notification-info {
+  background: #d4af37;
+  color: #000000;
+}
+
+.addon-item.enabled {
+  border-left: 4px solid #22c55e;
+}
+
+.addon-item.disabled {
+  border-left: 4px solid #6b7280;
+  opacity: 0.7;
+}
+
+.addon-status {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-customization {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .mobile-menu {
-      width: 100vw;
-    }
-    
-    .header {
-      padding: 1rem;
-    }
-    
-    .page-title {
-      font-size: 1.5rem;
-    }
+
+  .field-group {
+    grid-template-columns: 1fr;
   }
-  </style>
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .nfc-stats {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mobile-menu {
+    width: 100vw;
+  }
+}
+</style>

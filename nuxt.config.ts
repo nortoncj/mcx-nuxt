@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
 	modules: ["@nuxt/eslint"],
 	devtools: { enabled: true },
-	compatibilityDate: "2025-05-15",
-	css:[
-		'~/assets/css/reset.css'
+	css: [
+		"~/assets/css/reset.css",
 	],
+	compatibilityDate: "2025-05-15",
 	eslint: {
 		config: {
 			stylistic: {
