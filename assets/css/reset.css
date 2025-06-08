@@ -41,6 +41,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* main{
+	background-color: #121212;
+} */
 @font-face {
     font-family: "Cinzel";
     src: url("../fonts/Cinzel-VariableFont_wght.ttf") format('truetype');

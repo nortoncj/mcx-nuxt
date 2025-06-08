@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	compatibilityDate: "2025-05-15",
 	css:[
-		'~/assets/css/styles.css'
+		'~/assets/css/reset.css'
 	],
 	eslint: {
 		config: {

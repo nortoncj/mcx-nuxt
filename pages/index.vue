@@ -1,3 +1,8 @@
+<script setup>
+  definePageMeta({
+    layout: 'front'
+  })
+</script>
 <template>
 	<div class="hero-image-background">
 	
@@ -14,7 +19,7 @@
           <a class="hero_button" href="">Get Your MCX Card</a>
         </div>
         <div class="hero-right">
-          <img src="./assets/images/demo-card.png" alt="" />
+          <img src="~/assets/images/demo-card.png" alt="" />
         </div>
       </div>
 	</div>
@@ -29,24 +34,24 @@
         </p>
         <div class="brand-section">
           <img
-            src="./assets/images/brands/Gilbert.png"
+            src="~/assets/images/brands/Gilbert.png"
             alt=""
             class="brand"
             style="height: 40px"
           /><img
-            src="./assets/images/brands/Precision.png"
+            src="~/assets/images/brands/Precision.png"
             alt=""
             class="brand"
           /><img
-            src="./assets/images/brands/GES-Nashville.png"
+            src="~/assets/images/brands/GES-Nashville.png"
             alt=""
             class="brand"
             style="height: 100px"
           /><img
-            src="./assets/images/brands/Strategem.png"
+            src="~/assets/images/brands/Strategem.png"
             alt=""
             class="brand"
-          /><img src="./assets/images/brands/Legacy.png" alt="" class="brand" />
+          /><img src="~/assets/images/brands/Legacy.png" alt="" class="brand" />
         </div>
       </div>
       <div class="mid-proof-section">
@@ -58,7 +63,7 @@
               never been stronger."
             </p>
             <img
-              src="./assets/images/Olivia.jpg"
+              src="~/assets/images/Olivia.jpg"
               alt="person"
               class="proof-picture"
             />
@@ -66,7 +71,7 @@
           </div>
           <div class="mid-proof-right">
             <img
-              src="./assets/images/Jon.jpg"
+              src="~/assets/images/Jon.jpg"
               alt="person"
               class="proof-picture"
             />
@@ -98,7 +103,7 @@
           </div>
           <div class="end-mid-container-right">
             <img
-              src="./assets/images/dr-gilbrt-sq.jpeg"
+              src="~/assets/images/dr-gilbrt-sq.jpeg"
               alt="end-picture"
               class="end-picture"
             />
@@ -116,7 +121,7 @@
         <div class="features-card-left">
           <div class="feature">
             <span class="feature-bullet">
-              <img src="./assets/icons/crop-64.png" alt="design" />
+              <img src="~/assets/icons/crop-64.png" alt="design" />
               <p class="feature-title">Custom Branding</p></span
             >
             <p class="feature-text">
@@ -126,7 +131,7 @@
 
           <div class="feature">
             <span class="feature-bullet">
-              <img src="./assets/icons/analytics-6.png" alt="graph" />
+              <img src="~/assets/icons/analytics-6.png" alt="graph" />
               <p class="feature-title">Analytics</p></span
             >
             <p class="feature-text">
@@ -136,7 +141,7 @@
 
           <div class="feature">
             <span class="feature-bullet">
-              <img src="./assets/icons/security-shield-64.png" alt="shield" />
+              <img src="~/assets/icons/security-shield-64.png" alt="shield" />
               <p class="feature-title">Secure NFC Tech</p></span
             >
             <p class="feature-text">
@@ -155,11 +160,12 @@
               services, and bespoke card designs.
             </p>
           </div>
-          <img src="./assets/images/demo-card2.png" alt="" />
+          <img src="~/assets/images/demo-card2.png" alt="" />
         </div>
         <div class="features-card-right">
           <p class="feature-title">MCX vs. Others</p>
           <table class="feature-table">
+            <tbody>
             <tr>
               <th></th>
             </tr>
@@ -183,6 +189,7 @@
               <td>Premium Services</td>
               <td>X</td>
             </tr>
+          </tbody>
           </table>
         </div>
       </div>
@@ -191,17 +198,17 @@
       <p class="how-title">How it Works</p>
       <div class="how-container">
         <div class="how-step">
-          <img src="./assets/icons/card-64.png" alt="card" />
+          <img src="~/assets/icons/card-64.png" alt="card" />
           <p class="how-number">1</p>
           <p class="how-text">Select Your MCX Card</p>
         </div>
         <div class="how-step">
-          <img src="./assets/icons/link-64.png" alt="link" />
+          <img src="~/assets/icons/link-64.png" alt="link" />
           <p class="how-number">2</p>
           <p class="how-text">Connect Your Links & Brand</p>
         </div>
         <div class="how-step">
-          <img src="./assets/icons/user-interface-100.png" alt="click" />
+          <img src="~/assets/icons/user-interface-100.png" alt="click" />
           <p class="how-number">3</p>
           <p class="how-text">Tap, Share & Impress</p>
         </div>
@@ -218,7 +225,7 @@
           <p class="cta-subTitle">Sign up for our newsletter</p>
           <p class="cta-text">Receive industry insights and networking tips</p>
           <div class="cta-newsletter">
-            <!-- <script src="https://f.convertkit.com/ck.5.js"></script> -->
+           
             <form
               action="https://app.kit.com/forms/8071257/subcriptions"
             ></form>
@@ -247,6 +254,12 @@
     </div>
 </template>
 
-<script setup>
 
-</script>
+<style scoped>
+
+        @import "~/assets/css/styles.css";
+        .cta-newsletter-btn{
+          background-color: #5a5a5a;
+          color: #f5f5f5;
+        }
+        </style>

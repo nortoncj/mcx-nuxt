@@ -15,13 +15,14 @@
   box-sizing: border-box;
 }
 
-body {
+.body-container {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
   background: #0a0a0a;
   color: #ffffff;
   min-height: 100vh;
   display: flex;
+  /* min-width: 100vw; */
 }
 
 .sidebar {
@@ -83,6 +84,7 @@ body {
   flex: 1;
   padding: 2rem;
   background: #0a0a0a;
+  width: 100vh;
 }
 
 .header {

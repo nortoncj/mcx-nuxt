@@ -1,0 +1,460 @@
+
+   
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        
+
+        main {
+            font-family: 'Montserrat', sans-serif;
+            background: #121212;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            
+        }
+
+        /* Animated starfield background */
+        .starfield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #C4A100;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Roman architectural background elements */
+        .architectural-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cg opacity='0.03' fill='%23C4A100'%3E%3Cpath d='M100 100h50v800h-50z'/%3E%3Cpath d='M200 100h50v800h-50z'/%3E%3Cpath d='M300 100h50v800h-50z'/%3E%3Cpath d='M700 100h50v800h-50z'/%3E%3Cpath d='M800 100h50v800h-50z'/%3E%3Cpath d='M900 100h50v800h-50z'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat;
+            z-index: 2;
+        }
+
+        .auth-container {
+            position: relative;
+            z-index: 10;
+            perspective: 1000px;
+            
+        }
+
+        .auth-card {
+            background: 
+            linear-gradient(135deg, rgba(196, 161, 0, 0.2) 0%, rgba(139, 0, 0, 0.1) 100%),
+            url(../images/marble.jpg),
+            linear-gradient(135deg, rgba(245, 245, 245, 1) 0%, rgba(238, 238, 238, 1) 50%);
+            border: 3px solid #C4A100;
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            width: 420px;
+            max-width: 90vw;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(196, 161, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            margin:auto;
+        }
+
+        .auth-card.flipping {
+            transform: rotateY(180deg);
+        }
+
+        /* Decorative corner elements */
+        .auth-card::before,
+        .auth-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #C4A100;
+        }
+
+        .auth-card::before {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .auth-card::after {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .corner-top-right,
+        .corner-bottom-left {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #C4A100;
+        }
+
+        .corner-top-right {
+            top: 15px;
+            right: 15px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bottom-left {
+            bottom: 15px;
+            left: 15px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mcx-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #C4A100;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .roman-numerals {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #C4A100;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            color: #666666;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C4A100, transparent);
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '❦';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #F5F5F5;
+            color: #C4A100;
+            padding: 0 8px;
+            font-size: 12px;
+        }
+
+        .form-container {
+            min-height: 350px;
+            transition: all 0.4s ease;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .form-group.slide-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .form-group.slide-in {
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-label {
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            color: #333333;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 0;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #CCCCCC;
+            color: #333333;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-bottom-color: #C4A100;
+            box-shadow: 0 2px 8px rgba(196, 161, 0, 0.2);
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            color: #C4A100;
+            transform: translateY(-2px);
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #C4A100 0%, #D4B520 100%);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2rem 0 1.5rem 0;
+            box-shadow: 
+                0 4px 15px rgba(196, 161, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .auth-button:hover::before {
+            left: 100%;
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(196, 161, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .auth-button:active {
+            transform: translateY(0);
+        }
+
+        .auth-button:disabled {
+            background: #999999;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333333;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .forgot-password a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .forgot-password a:hover {
+            color: #C4A100;
+        }
+
+        .switch-link {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #666666;
+        }
+
+        .switch-link a {
+            color: #C4A100;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .switch-link a:hover {
+            color: #8B0000;
+            text-shadow: 0 0 8px rgba(196, 161, 0, 0.3);
+        }
+
+        .message {
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .error-message {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid #8B0000;
+            color: #8B0000;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-enter-from, .fade-leave-to {
+            opacity: 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            .mcx-logo {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Additional registration form styles */
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666666;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-top: 2px;
+            accent-color: #C4A100;
+        }
+
+        .terms-checkbox a {
+            color: #C4A100;
+            text-decoration: none;
+        }
+
+        .terms-checkbox a:hover {
+            text-decoration: underline;
+        }
