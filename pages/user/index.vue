@@ -218,6 +218,15 @@
 			</Transition>
 		</div>
 	</div>
+	`<!-- <CropperModal
+		v-if="openCropper"
+		:linkId="currentUser.avatar"
+		@data="$event => data = $event"
+		@close="$event => openCropper = false"
+		@save="$event => updateAvatar($event)"
+		@cancel="$event => openCropper = false"
+		@upload="$event => handleAvatarUpload()"
+	/> -->`
 </template>
 
 <script setup>

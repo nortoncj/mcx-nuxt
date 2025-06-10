@@ -10,7 +10,8 @@
 					<NuxtLink
 					
 						to="/admin"
-						class="nav-link active"
+						class="nav-link"
+						:class="{ active: route.path === '/admin' || route.path === '/user' }"
 					>
 					<Icon class="nav-icon" name="ri:pass-pending-line" size="16" />
 						<!-- <span class="nav-icon" /> -->
@@ -21,6 +22,7 @@
 					<NuxtLink
 						to="/user/profile"
 						class="nav-link "
+						:class="{ active: route.path === '/user/profile' }"
 					>
 					<Icon class="nav-icon" name="ri:user-fill" size="16" />
 						Profile
@@ -30,6 +32,7 @@
 					<a
 						href="#"
 						class="nav-link"
+						:class="{ active: route.path === '/admin/cards' }"
 					>
 					<Icon class="nav-icon" name="ri:id-card-fill" size="16" />
 						Cards
@@ -39,6 +42,7 @@
 					<a
 						href="#"
 						class="nav-link "
+						:class="{ active: route.path === '/admin/subscription' }"
 					>
 					<Icon class="nav-icon" name="ri:star-fill" size="16" />
 						Subscription
@@ -48,6 +52,7 @@
 					<a
 						href="#"
 						class="nav-link"
+						:class="{ active: route.path === '/admin/products' }"
 					>
 					<Icon class="nav-icon" name="ri:box-3-fill" size="16" />
 						Products
@@ -57,6 +62,7 @@
 					<a
 						href="#"
 						class="nav-link"
+						:class="{ active: route.path === '/admin/users' }"
 					>
 					<Icon class="nav-icon" name="ri:user-settings-fill" size="16" />
 						Users
@@ -66,6 +72,7 @@
 					<a
 						href="#"
 						class="nav-link"
+						:class="{ active: route.path === '/admin/analytics' }"
 					>
 					<Icon class="nav-icon" name="ri:bar-chart-2-fill" size="16" />
 						Analytics
@@ -75,6 +82,7 @@
 					<a
 						href="#"
 						class="nav-link "
+						:class="{ active: route.path === '/admin/store' }"
 					>
 					<Icon class="nav-icon" name="ri:shopping-bag-4-fill" size="16" />
 						Store
@@ -84,6 +92,7 @@
 					<a
 						href="#"
 						class="nav-link"
+						:class="{ active: route.path === '/admin/settings' }"
 					>
 					<Icon class="nav-icon" name="ri:settings-3-fill" size="16" />
 						Settings
@@ -93,6 +102,7 @@
 					<a
 						href="#"
 						class="nav-link "
+						:class="{ active: route.path === '/admin/security' }"
 					>
 					
 
@@ -113,6 +123,8 @@
 
 	<script setup>
 	const router = useRouter()
+	const route = useRoute()
+ 
 	const logout = async () =>{
 		router.push('/')
 	}

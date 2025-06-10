@@ -17,3 +17,14 @@ export default defineNuxtConfig({
 								},
 				},
 });
+
+/*
+pinia-plugin-persistedsate/nuxt
+vite-pwa/nuxt
+nuxt-icon
+nuxt-lodash
+pinia/nuxt : npm i pinia -f
+axios
+vue-advanced-cropper
+tailwind *
+*/
