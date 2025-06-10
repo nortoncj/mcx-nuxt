@@ -59,11 +59,13 @@
       <div class="builder-content">
         <!-- Edit Tab -->
         <div v-if="activeTab === 'edit'" class="edit-panel">
-         <ProfileEdit @update="handleProfileUpdate" 
+         <ProfileEdit 
+         @update="handleProfileUpdate" 
          @edit-link="editCustomLink"
          @delete-link="deleteCustomLink"
+         @show-image-modal="handleShowModal"
          @show-link-modal="handleShowLinkModal"
-         v-bind:themes="themes" v-bind:profile="profile" />
+         :themes="themes" :profile="profile" />
         </div>
   
         <!-- Design Tab -->
@@ -95,12 +97,14 @@
           
         </div>
       </div>
-      <Modal 
-        v-if="showModal" 
-        :type="modalType" 
+        <!-- Upload Modal -->
+        <Modal 
+        v-if="showImageModal" 
+        :type="imageModalType" 
         :profile="profile" 
-        @close="closeModal" 
-        @update="updateProfile"
+        @close="showImageModal = false" 
+        @update="handleProfileUpdate"
+        @data="$event => data = $event"</Modal>
       />
       <!-- Link Modal -->
       <div v-if="showLinkModal" class="modal-overlay" @click.self="closeLinkModal">
@@ -173,9 +177,11 @@
   // Reactive state
   const activeTab = ref('edit')
   const selectedLayout = ref('1')
-  const previewDevice = ref('mobile')
   const copied = ref('')
   const showLinkModal = ref(false)
+  const showImageModal = ref(false)
+  const imageModalType = ref('')
+
   const editingLink = ref(null)
   
   const profile = reactive({
@@ -253,9 +259,14 @@
 }
   
   // Methods
+  const handleShowModal = (type) => {
+    imageModalType.value = type
+    showImageModal.value = true
+  }
   const handleShowLinkModal = (type) => {
     showLinkModal.value = true
     console.log('Opening link modal')
+    
   }
   const handleFileUpload = (type) => {
     const input = type === 'cover' ? document.querySelector('input[ref="coverInput"]') : document.querySelector('input[ref="avatarInput"]')

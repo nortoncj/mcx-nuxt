@@ -81,51 +81,54 @@
                 <div class="image-uploads">
                 <div class="upload-group">
                     <label>Profile Portrait</label>
-                    <div class="image-upload-area">
+                    <div class="image-upload-area" @click="openModal('avatar')">
                     <img v-if="profile.avatar" :src="profile.avatar" alt="Avatar" class="uploaded-image" />
                     <div v-else class="upload-placeholder">
-                        <Icon name="ri:camera-line" size="24" />
-                        <span>Upload Portrait</span>
+                      <Icon name="ri:camera-line" size="24" />
+                      <span>Upload Portrait</span>
                     </div>
+                    
+                    <!-- Remove @click from input -->
                     <input 
-                        hidden
-                        ref="avatarInput"
-                        type="file"
-                        @change="openModal('avatar')"
-                        accept="image/*"
+                      hidden
+                      ref="avatarInput"
+                      type="file"
+                      @change="handleFileChange('avatar')"
+                      accept="image/*"
                     />
+                    
                     <button 
-                        class="upload-btn"
-                        @click="$refs.avatarInput.click()"
+                      class="upload-btn"
+                      @click.stop="openModal('avatar')"
                     >
-                        <Icon name="ri:camera-line" size="16" />
-                        {{ profile.avatar ? 'Change' : 'Upload' }}
+                      <Icon name="ri:camera-line" size="16" />
+                      {{ profile.avatar ? 'Change' : 'Upload' }}
                     </button>
-                    </div>
+                  </div>
                 </div>
                 
                 <div class="upload-group">
                     <label>Cover Imagery</label>
-                    <div class="image-upload-area cover">
+                    <div class="image-upload-area cover" @click="openModal('cover')">
                     <img v-if="profile.coverImage" :src="profile.coverImage" alt="Cover" class="uploaded-image" />
                     <div v-else class="upload-placeholder">
                         <Icon name="ri:camera-line" size="24" />
                         <span>Upload Cover</span>
                     </div>
                     <input 
-                        ref="coverInput"
-                        type="file" 
-                        @change="openModal('cover')"
-                        accept="image/*"
-                        hidden
-                    />
-                    <button 
-                        class="upload-btn"
-                        @click="$refs.coverInput.click()"
-                    >
-                        <Icon name="ri:camera-line" size="16" />
-                        {{ profile.coverImage ? 'Change' : 'Upload' }}
-                    </button>
+                          ref="coverInput"
+                          type="file" 
+                          @change="handleFileChange('cover')"
+                          accept="image/*"
+                          hidden
+                      />
+                      <button 
+                          class="upload-btn"
+                          @click.stop="openModal('cover')"
+                      >
+                          <Icon name="ri:camera-line" size="16" />
+                          {{ profile.coverImage ? 'Change' : 'Upload' }}
+                      </button>
                     </div>
                 </div>
                 </div>
@@ -295,6 +298,8 @@
               </div>
             </div>
           </div>
+
+        
 </template>
 
 
@@ -314,27 +319,29 @@ const props = defineProps({
 })
 
 // Emits
-const emit = defineEmits(['update', 'edit-link', 'delete-link', 'show-link-modal'])
+const emit = defineEmits(['update', 'edit-link', 'delete-link','show-link-modal' ,'show-image-modal'])
 
 // Modal state
-const showModal = ref(false)
-const modalType = ref('')
+// const showModal = ref(false)
+// const modalType = ref('')
 
 // Methods
 const openModal = (type) => {
-  modalType.value = type
-  showModal.value = true
+  emit('show-image-modal', type)
 }
 
-const closeModal = () => {
-  showModal.value = false
-  modalType.value = ''
-}
+
 
 // Computed
 const currentTheme = computed(() => {
   return props.themes.find(t => t.id === props.profile.theme)
 })
+
+const handleFileChange = (type) => {
+  // This handles the file input change if you need it for other purposes
+  // But the main upload should happen through your Modal component
+  console.log(`File selected for ${type}`)
+}
 </script>
 <style scoped>
 @import "~/assets/css/account/profile.css";
