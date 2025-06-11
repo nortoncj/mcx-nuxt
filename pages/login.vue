@@ -498,7 +498,9 @@ const handleRegister = async () => {
 
 	isLoading.value = true;
 	clearMessages();
-
+	const registerInput = ref({
+		
+	})
 	try {
 		const result = await simulateAPI(registerForm.value, false);
 		showSuccess(`Welcome to MCX, ${result.user.name}! Your legacy begins now.`);
