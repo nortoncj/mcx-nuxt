@@ -105,7 +105,7 @@
         @close="showImageModal = false" 
         @update="handleProfileUpdate"
         @data="$event => data = $event"</Modal>
-      />
+      
       <!-- Link Modal -->
       <div v-if="showLinkModal" class="modal-overlay" @click.self="closeLinkModal">
         <div class="modal">
