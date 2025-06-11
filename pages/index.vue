@@ -319,5 +319,9 @@ definePageMeta({
         .cta-newsletter-btn{
           background-color: #5a5a5a;
           color: #f5f5f5;
+		  cursor:pointer;
         }
+		.cta-newsletter-btn:hover{
+		  background-color: #3a3a3a;
+		}
         </style>
