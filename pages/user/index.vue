@@ -4,12 +4,12 @@
 			<div class="profile-header">
 				<img
 					:src="currentUser.avatar"
-					:alt="currentUser.name"
+					:alt="currentUser.firstName"
 					class="profile-avatar"
 					@click="handleAvatarUpload"
 				>
 				<div class="profile-info">
-					<h1>{{ currentUser.name }}</h1>
+					<h1>{{ currentUser.firstName + " " + currentUser.lastName }}</h1>
 					<p class="profile-subtitle">
 						{{ currentUser.title }} | {{ currentUser.department }}
 					</p>
@@ -42,23 +42,41 @@
 					<div class="profile-fields">
 						<div class="field-group">
 							<div class="form-field">
-								<label class="form-label">Name</label>
+								<label class="form-label">First</label>
 								<input
-									v-model="currentUser.name"
+									v-model="currentUser.firstName"
 									type="text"
 									class="form-input"
-									@input="validateField($event, 'name')"
+									@input="validateField($event, 'firstName')"
 									@focus="handleFieldFocus"
-									@blur="handleFieldBlur('name')"
+									@blur="handleFieldBlur('firstName')"
 								>
 								<div
-									v-if="fieldErrors.name"
+									v-if="fieldErrors.firstName"
 									class="error-message"
 								>
-									{{ fieldErrors.name }}
+									{{ fieldErrors.firstName }}
 								</div>
 							</div>
 							<div class="form-field">
+								<label class="form-label">Last</label>
+								<input
+									v-model="currentUser.lastName"
+									type="text"
+									class="form-input"
+									@input="validateField($event, 'lastName')"
+									@focus="handleFieldFocus"
+									@blur="handleFieldBlur('lastName')"
+								>
+								<div
+									v-if="fieldErrors.title"
+									class="error-message"
+								>
+									{{ fieldErrors.lastName}}
+								</div>
+							</div>
+						</div>
+						<div class="form-field">
 								<label class="form-label">Title</label>
 								<input
 									v-model="currentUser.title"
@@ -74,8 +92,7 @@
 								>
 									{{ fieldErrors.title }}
 								</div>
-							</div>
-						</div>
+								</div>
 						<div class="form-field">
 							<label class="form-label">Department</label>
 							<input
@@ -218,15 +235,7 @@
 			</Transition>
 		</div>
 	</div>
-	`<!-- <CropperModal
-		v-if="openCropper"
-		:linkId="currentUser.avatar"
-		@data="$event => data = $event"
-		@close="$event => openCropper = false"
-		@save="$event => updateAvatar($event)"
-		@cancel="$event => openCropper = false"
-		@upload="$event => handleAvatarUpload()"
-	/> -->`
+	
 </template>
 
 <script setup>
@@ -238,7 +247,8 @@ definePageMeta({
 
 // Reactive data
 const currentUser = reactive({
-	name: "David Harrison",
+	firstName: "David",
+	lastName: "Stone",
 	title: "Senior Associate",
 	department: "Corporate Law",
 	avatar: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23333'/%3E%3Cstop offset='100%25' stop-color='%23555'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='60' fill='url(%23grad)'/%3E%3Ccircle cx='60' cy='45' r='20' fill='%23888'/%3E%3Cpath d='M30 85 Q60 70 90 85' fill='%23888'/%3E%3C/svg%3E",
@@ -337,9 +347,13 @@ const validateField = (event, fieldType) => {
 	let message = "";
 
 	switch (fieldType) {
-		case "name":
+		case "firstName":
 			isValid = value.length >= 2;
-			message = isValid ? "" : "Name must be at least 2 characters";
+			message = isValid ? "" : "First name must be at least 2 characters";
+			break;
+		case "lastName":
+			isValid = value.length >= 2;
+			message = isValid ? "" : "Last name must be at least 2 characters";
 			break;
 		case "title":
 			isValid = value.length >= 2;

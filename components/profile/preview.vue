@@ -62,7 +62,7 @@
           </div>
           
           <div class="profile-info">
-            <h1 class="profile-name">{{ profile.name }}</h1>
+            <h1 class="profile-name">{{ profile.firstName + " " + profile.lastName}}</h1>
             <p class="profile-title">{{ profile.title }}</p>
             <p class="profile-company">{{ profile.company }}</p>
             <p v-if="profile.tagline" class="profile-tagline">"{{ profile.tagline }}"</p>

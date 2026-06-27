@@ -47,30 +47,32 @@
 }
 
 .mid-proof-left {
-  padding: 0 50px 0;
+  padding: 0 150px 0;
   width: 40%;
 }
 .proof-picture {
   height: 300px;
+  padding: 10px 0px;
   /* border-radius: 10px; */
 }
 .mid-proof-title {
   font-family: "Playfair";
   text-transform: uppercase;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0px 0px 0px;
+  padding: 0px 5px 10px 5px;
   color: #dfca6a;
   font-size: 25px;
 }
 .proof-quote {
   font-family: "Lora";
   font-size: 25px;
-  padding: 10px 5px 10px 5px;
+  padding: 5px 5px 5px 5px;
   margin: 0 40px 0 0;
 }
 .proof-name {
   font-family: "Montserrat";
   font-weight: 400;
-  padding: 20px 0 20px 0;
+  /* padding: 20px 0 20px 0; */
   font-size: 20px;
 }
 
@@ -98,7 +100,7 @@
 
 .end-mid-container {
   color: #121111;
-  padding: 20px 40px 20px 40px;
+  padding: 20px 250px 20px 140px;
   display: flex;
   justify-content: space-between;
 }

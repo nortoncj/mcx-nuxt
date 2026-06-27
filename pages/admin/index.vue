@@ -293,7 +293,7 @@
 		</div>
 
 		<!-- Debug Panel (remove in production) -->
-		<div
+		<!-- <div
 			class="debug-panel"
 			style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 1rem; border-radius: 8px; font-size: 12px;"
 		>
@@ -328,7 +328,7 @@
 					Add Activity
 				</button>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -336,6 +336,10 @@
 definePageMeta({
 	layout: "admin",
 });
+import { useUserStore } from '~/stores/user';
+const userStore = useUserStore();
+let selectedInput = ref({id:0,str:''});
+let showAddLink = ref(false); 
 
 // Use the dashboard composable
 const {

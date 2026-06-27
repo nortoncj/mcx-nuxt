@@ -212,7 +212,7 @@
                 <!-- Profile Header -->
                 <div class="profile-header">
                   <div class="avatar-section">
-                    <img v-if="profile.avatar" :src="profile.avatar" :alt="profile.name" class="avatar-large" />
+                    <img v-if="profile.avatar" :src="profile.avatar" :alt="profile.firstName" class="avatar-large" />
                     <div v-else class="avatar-placeholder">
                       <Icon name="ri:user-line" size="32" />
                     </div>
@@ -222,7 +222,7 @@
                   </div>
                   
                   <div class="profile-info">
-                    <h1 class="profile-name">{{ profile.name }}</h1>
+                    <h1 class="profile-name">{{ profile.firstName + " " + profile.lastName }}</h1>
                     <p class="profile-title">{{ profile.title }}</p>
                     <p class="profile-company">{{ profile.company }}</p>
                     <p v-if="profile.tagline" class="profile-tagline">"{{ profile.tagline }}"</p>
@@ -305,6 +305,10 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
+import { useUserStore } from "~/stores/user";
+import { storeToRefs } from 'pinia'
+const userStore = useUserStore;
+const {isMobile, updatedLinkId} = storeToRefs(userStore)
 
 // Props
 const props = defineProps({

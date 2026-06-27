@@ -1,5 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	app: {
+		head: {
+			title: "MCX",
+			link: [
+				{
+					rel: "icon",
+					type: "image/x-icon",
+					href: "/pwa-512x512.png",
+				}
+			],
+		},
+	},
+	pages: true,
 	modules: [
 		"@nuxt/eslint",
 		"@nuxt/icon",
@@ -9,33 +22,33 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"@vite-pwa/nuxt",
 	],
-	pwa: {
-		manifest: {
-			name: "My Nuxt ",
-			short_name: "NuxtApp",
-			description: "A Nuxt.js application with PWA support",
-			theme_color: "#ffffff",
-			background_color: "#ffffff",
-			display: "standalone",
-			start_url: "/",
-			icons: [
-				{
-					src: "/icon-192x192.png",
-					sizes: "192x192",
-					type: "image/png",
-				},
-				{
-					src: "/icon-512x512.png",
-					sizes: "512x512",
-					type: "image/png",
-				},
-			]
-		},
-		devOptions: {
-			enabled: true, // Enable PWA in development mode
-			type: "module", // Use module type for service worker
-		},
-	},
+	// pwa: {
+	// 	manifest: {
+	// 		name: "Magna Carda Exchange",
+	// 		short_name: "MCX",
+	// 		description: "Start building your empire with Magna Carda Exchange.",
+	// 		theme_color: "#ffffff",
+	// 		background_color: "#131313",
+	// 		display: "standalone",
+	// 		start_url: "/",
+	// 		icons: [
+	// 			{
+	// 				src: "/pwa-192x192.png",
+	// 				sizes: "192x192",
+	// 				type: "image/png",
+	// 			},
+	// 			{
+	// 				src: "/pwa-512x512.png",
+	// 				sizes: "512x512",
+	// 				type: "image/png",
+	// 			},
+	// 		]
+	// 	},
+	// 	devOptions: {
+	// 		enabled: true, // Enable PWA in development mode
+	// 		type: "module", // Use module type for service worker
+	// 	},
+	// },
 	
 	experimental: {
 		payloadExtraction: false, // Disable payload extraction for performance
@@ -49,8 +62,8 @@ export default defineNuxtConfig({
 		// server-side only
 		privateKey: "secretKey",
 		public: {
-			API_URL: process.env.API_URL || "http://localhost:3000/api",
-			APP_BASE_URL: process.env.APP_BASE_URL || "http://localhost:3000",
+			API_URL: process.env.API_URL || "http://localhost:8000/api",
+			APP_BASE_URL: process.env.APP_BASE_URL || "http://localhost:8000",
 			APP_NAME: process.env.APP_NAME || "My Nuxt App",
 		},
 	},

@@ -24,36 +24,18 @@
         </div>
         
         <!-- Navigation Tabs -->
-        <div class="tab-navigation">
+        <div class="tab-navigation" >
+          <div class="" v-for="link in links" :key="link.name">
           <button 
-            :class="['tab', { active: activeTab === 'edit' }]"
-            @click="activeTab = 'edit'"
+            :class="['tab', { active: activeTab === link.tab }]"
+            @click="activeTab = link.tab"
           >
-            <Icon name="ri:edit-line" size="16" />
-            Edit Profile
+            <Icon :name="link.icon" size="16" />
+            {{link.name}}
           </button>
-          <button 
-            :class="['tab', { active: activeTab === 'design' }]"
-            @click="activeTab = 'design'"
-          >
-            <Icon name="ri:palette-line" size="16" />
-            Design
-          </button>
-          <button 
-            :class="['tab', { active: activeTab === 'preview' }]"
-            @click="activeTab = 'preview'"
-          >
-            <Icon name="ri:eye-line" size="16" />
-            Preview
-          </button>
-          <button 
-            :class="['tab', { active: activeTab === 'analytics' }]"
-            @click="activeTab = 'analytics'"
-          >
-            <Icon name="ri:star-line" size="16" />
-            Analytics
-          </button>
+         </div>
         </div>
+       
       </div>
   
       <div class="builder-content">
@@ -168,6 +150,11 @@
   </template>
   
   <script setup>
+  import { useUserStore } from "~/stores/user";
+import { storeToRefs } from 'pinia'
+const userStore = useUserStore;
+  const { isMobile, updatedLinkId } = storeToRefs(userStore)
+  
   definePageMeta({
     layout: "admin",
   });
@@ -183,9 +170,19 @@
   const imageModalType = ref('')
 
   const editingLink = ref(null)
+
+  const links = ref([
+    { name: 'Edit Profile', icon: 'ri:edit-line', action: 'editProfile',tab:'edit' },
+    {name: 'Design', icon: 'ri:palette-line', action: 'designProfile',tab:'design'},
+    { name: 'Preview', icon: 'ri:eye-line', action: 'previewProfile', tab:'preview' },
+    { name: 'Analytics', icon: 'ri:star-line', action: 'viewAnalytics',tab:'analytics' },
+    
+  ])
   
   const profile = reactive({
-    name: 'Marcus Aurelius',
+    id:0,
+    firstName: 'Marcus',
+    lastName:'Aurelius',
     title: 'Senior Consul',
     company: 'Augustus & Associates',
     tagline: 'Virtus et Honor - Virtue and Honor',
@@ -346,6 +343,7 @@
   const currentTheme = computed(() => {
     return themes.find(t => t.class === profile.theme)
   })
+ 
   </script>
   
   <style scoped>

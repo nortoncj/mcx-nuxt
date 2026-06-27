@@ -38,79 +38,16 @@
 							✕
 						</button>
 					</div>
-					<nav class="mobile-menu-nav">
+					<nav class="mobile-menu-nav" >
+						<div class="" v-for="link in links" :key="link.name">
 						<a
-							href="#"
+							:href="link.path"
 							class="mobile-menu-item"
 							@click="closeMobileMenu"
 						>
-						<Icon class="nav-icon" name="ri:user-fill" size="16" />  Profile
+						<Icon class="nav-icon" :name="link.icon" size="16" />  {{link.name}}
 						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:pass-pending-line" size="16" /> Dashboard
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:user-settings-fill" size="16" /> Users
-							
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:id-card-fill" size="16" /> Cards
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:box-3-fill" size="16" /> Products
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:star-fill" size="16" /> Subscription
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:shopping-bag-4-fill" size="16" /> Store
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:bar-chart-2-fill" size="16" /> Analytics
-						</a>
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:settings-3-fill" size="16" /> Settings
-						</a>
-
-						<a
-							href="#"
-							class="mobile-menu-item"
-							@click="closeMobileMenu"
-						>
-						<Icon class="nav-icon" name="ri:shield-fill" size="16" /> Security
-						</a>
+						</div>
 
 						<button class="mobile-menu-item" style="text-decoration:none;" @click="$event => logout()" >
 							<div class="mobile-menu-logout">
@@ -282,8 +219,26 @@ border-top: 1px solid rgba(196, 161, 0, 0.2);
     </style>
 
     <script setup>
+
+import { useUserStore } from '~/stores/user'
 const router = useRouter()
-const route = useRoute()
+	const route = useRoute()
+	const userStore = useUserStore()
+	
+
+	const links = ref([
+		{ name: 'Dashboard', path: '/admin', icon: 'ri:pass-pending-line' },
+		{ name: 'Profile', path: '/user/profile', icon: 'ri:user-fill' },
+		{ name: 'Cards', path: '/admin/cards', icon: 'ri:id-card-fill' },
+		{ name: 'Subscription', path: '/admin/subscription', icon: 'ri:star-fill' },
+		{ name: 'Products', path: '/admin/products', icon: 'ri:box-3-fill' },
+		{ name: 'Users', path: '/admin/users', icon: 'ri:user-settings-fill' },
+		{ name: 'Analytics', path: '/admin/analytics', icon: 'ri:bar-chart-2-fill' },
+		{ name: 'Store', path: '/admin/store', icon: 'ri:shopping-bag-4-fill' },
+		{ name: 'Settings', path: '/admin/settings', icon: 'ri:settings-3-fill' },
+		{ name: 'Security', path: '/admin/security', icon: 'ri:shield-fill' }
+	])
+
  const pageTitle = () => {
 	switch(route.fullPath) {
 		case '/admin':

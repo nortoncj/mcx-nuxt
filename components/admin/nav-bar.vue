@@ -5,111 +5,20 @@
 				MCX
 			</div>
 		</NuxtLink >
-			<ul class="nav-menu">
+			<ul class="nav-menu" v-for="link in links">
 				<li class="nav-item">
 					<NuxtLink
 					
-						to="/admin"
+						:to="link.path"
 						class="nav-link"
-						:class="{ active: route.path === '/admin' || route.path === '/user' }"
+						:class="{ active: route.path === link.path }"
 					>
-					<Icon class="nav-icon" name="ri:pass-pending-line" size="16" />
+					<Icon class="nav-icon" :name="link.icon" size="16" />
 						<!-- <span class="nav-icon" /> -->
-						Dashboard
+						{{link.name}}
 					</NuxtLink>
 				</li>
-				<li class="nav-item">
-					<NuxtLink
-						to="/user/profile"
-						class="nav-link "
-						:class="{ active: route.path === '/user/profile' }"
-					>
-					<Icon class="nav-icon" name="ri:user-fill" size="16" />
-						Profile
-					</NuxtLink>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link"
-						:class="{ active: route.path === '/admin/cards' }"
-					>
-					<Icon class="nav-icon" name="ri:id-card-fill" size="16" />
-						Cards
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link "
-						:class="{ active: route.path === '/admin/subscription' }"
-					>
-					<Icon class="nav-icon" name="ri:star-fill" size="16" />
-						Subscription
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link"
-						:class="{ active: route.path === '/admin/products' }"
-					>
-					<Icon class="nav-icon" name="ri:box-3-fill" size="16" />
-						Products
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link"
-						:class="{ active: route.path === '/admin/users' }"
-					>
-					<Icon class="nav-icon" name="ri:user-settings-fill" size="16" />
-						Users
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link"
-						:class="{ active: route.path === '/admin/analytics' }"
-					>
-					<Icon class="nav-icon" name="ri:bar-chart-2-fill" size="16" />
-						Analytics
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link "
-						:class="{ active: route.path === '/admin/store' }"
-					>
-					<Icon class="nav-icon" name="ri:shopping-bag-4-fill" size="16" />
-						Store
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link"
-						:class="{ active: route.path === '/admin/settings' }"
-					>
-					<Icon class="nav-icon" name="ri:settings-3-fill" size="16" />
-						Settings
-					</a>
-				</li>
-				<li class="nav-item">
-					<a
-						href="#"
-						class="nav-link "
-						:class="{ active: route.path === '/admin/security' }"
-					>
-					
-
-					<Icon class="nav-icon" name="ri:shield-fill" size="16" />
-						Security
-					</a>
-				</li>
+				
 			</ul>
 			
 			<button class="nav-item" style="text-decoration:none;" @click="$event => logout()" >
@@ -122,11 +31,34 @@
     </template>
 
 	<script setup>
+	import { useUserStore } from '~/stores/user'
+	const userStore = useUserStore()
 	const router = useRouter()
 	const route = useRoute()
- 
+
+	const links = ref([
+		{ name: 'Dashboard', path: '/admin', icon: 'ri:pass-pending-line' },
+		{ name: 'Profile', path: '/user/profile', icon: 'ri:user-fill' },
+		{ name: 'Cards', path: '/admin/cards', icon: 'ri:id-card-fill' },
+		{ name: 'Subscription', path: '/admin/subscription', icon: 'ri:star-fill' },
+		{ name: 'Products', path: '/admin/products', icon: 'ri:box-3-fill' },
+		{ name: 'Users', path: '/admin/users', icon: 'ri:user-settings-fill' },
+		{ name: 'Analytics', path: '/admin/analytics', icon: 'ri:bar-chart-2-fill' },
+		{ name: 'Store', path: '/admin/store', icon: 'ri:shopping-bag-4-fill' },
+		{ name: 'Settings', path: '/admin/settings', icon: 'ri:settings-3-fill' },
+		{ name: 'Security', path: '/admin/security', icon: 'ri:shield-fill' }
+	])
 	const logout = async () =>{
-		router.push('/')
+		let res = confirm('Are you sure you want to logout?')
+		try {
+			if(res) {
+				await userStore.logout()
+				router.push('/login')
+				return
+			}
+		}catch(error) {
+			console.log(error)
+		}
 	}
 	</script>
 

@@ -251,9 +251,16 @@
 </template>
 
 <script setup>
+import { useUserStore } from '~/stores/user';
+import { storeToRefs } from 'pinia';
+const userStore = useUserStore();
+const router = useRouter();
+const {updatedLinkId} = storeToRefs(userStore);
 definePageMeta({
 	layout: "front",
+	middleware: 'is-logged-in'
 });
+
 
 // Reactive state
 const starfield = ref(null);
@@ -263,17 +270,22 @@ const isLoading = ref(false);
 const errorMessage = ref("");
 const successMessage = ref("");
 
-// Form data
+// Input Fields
+let errors = ref(null);
+
+// Form Data
+
+// Login Input
 const loginForm = ref({
 	email: "",
 	password: "",
 });
-
+// register Input
 const registerForm = ref({
 	firstName: "",
 	lastName: "",
+	title:"",
 	email: "",
-	title: "",
 	password: "",
 	confirmPassword: "",
 	acceptTerms: false,
@@ -443,13 +455,15 @@ const validateRegistration = () => {
 	return true;
 };
 
+const config = useRuntimeConfig();
+
 const simulateAPI = (data, isLogin = true) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			if (isLogin) {
 				// Demo login credentials
 				if (data.email === "test@mcx.com" && data.password === "password") {
-					resolve({ success: true, user: { name: "Test User", email: data.email } });
+					resolve({ success: true, user: { firstName: "Test", email: data.email } });
 				}
 				else {
 					reject(new Error("Invalid credentials"));
@@ -470,6 +484,35 @@ const simulateAPI = (data, isLogin = true) => {
 	});
 };
 
+const callAPI = (data, isLogin = true) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			if (isLogin) {
+				// Demo login credentials
+				if (data.email === "test@mcx.com" && data.password === "password") {
+					resolve({ success: true, user: { firstName: "Test", email: data.email } });
+				}
+				else {
+					reject(new Error("Invalid credentials"));
+				}
+			}
+			else {
+				// Simulate registration success
+				resolve({
+					success: true,
+					user: {
+						name: `${data.firstName} ${data.lastName}`,
+						firstName: data.firstName,
+						lastName: data.lastName,
+						email: data.email,
+						title: data.title,
+					},
+				});
+			}
+		}, 2000);
+	});
+};
+
 const handleLogin = async () => {
 	if (!validateLogin()) return;
 
@@ -477,12 +520,17 @@ const handleLogin = async () => {
 	clearMessages();
 
 	try {
-		const result = await simulateAPI(loginForm.value, true);
+		// const result = await simulateAPI(loginForm.value, true);
+		await userStore.getTokens()
+		await userStore.login(loginForm.value.email,loginForm.value.password)
+		await userStore.getUser()
+
 		showSuccess(`Welcome back, ${result.user.name}!`);
 
 		setTimeout(() => {
 			console.log("Redirecting to dashboard...");
 			// Use Nuxt router: await navigateTo('/dashboard')
+			router.push('/user');
 		}, 2000);
 	}
 	catch (error) {
@@ -498,22 +546,48 @@ const handleRegister = async () => {
 
 	isLoading.value = true;
 	clearMessages();
-	const registerInput = ref({
-		
-	})
-	try {
-		const result = await simulateAPI(registerForm.value, false);
-		showSuccess(`Welcome to MCX, ${result.user.name}! Your legacy begins now.`);
 
-		setTimeout(() => {
-			console.log("Redirecting to onboarding...");
-			// Use Nuxt router: await navigateTo('/onboarding')
-		}, 2000);
+	try {
+		console.log('Registration data:', registerForm.value); // Debug log
+		await userStore.getTokens();
+
+		await userStore.register(
+			registerForm.value.name = 
+			registerForm.value.firstName,
+			registerForm.value.lastName, 
+			registerForm.value.email,
+			registerForm.value.title,
+			registerForm.value.password, 
+			registerForm.value.confirmPassword
+		);
+
+		await userStore.getUser()
+		/* Test API Info */
+		// const result = await simulateAPI(registerForm.value, false);
+		showSuccess(`Welcome to MCX, ${userStore.firstName} ${userStore.lastName}! Your legacy begins now.`);
+
+		// setTimeout(() => {
+		// 	console.log("Redirecting to onboarding...");
+		// 	// Use Nuxt router: await navigateTo('/onboarding')
+		// }, 2000);
+
+		// Redirect to onboarding
+		await router.push('/admin')
 	}
 	catch (error) {
-		showError(error.message);
-	}
-	finally {
+		console.error('Registration error:', error);
+		
+		// Enhanced error handling
+		if (error.response?.data?.message) {
+			showError(error.response.data.message);
+		} else if (error.response?.data?.errors) {
+			// Handle Laravel validation errors
+			const validationErrors = Object.values(error.response.data.errors).flat();
+			showError(validationErrors.join(', '));
+		} else {
+			showError(error.message || 'Registration failed. Please try again.');
+		}
+	} finally {
 		isLoading.value = false;
 	}
 };
@@ -564,6 +638,8 @@ onMounted(() => {
 		console.log("Stars in DOM:", starfield.value?.children.length);
 	});
 });
+
+onUnmounted(() => updatedLinkId.value = 0);
 </script>
 
 <style scoped>

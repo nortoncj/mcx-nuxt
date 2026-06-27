@@ -10,7 +10,11 @@
 </template>
 
 <script setup>
+import isLoggedOut from '~/middleware/isLoggedOut';
 
+definePageMeta({
+	middleware: isLoggedOut
+})
 </script>
 
     <style scoped>
